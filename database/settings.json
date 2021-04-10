@@ -1,5 +1,10 @@
 {
   "token": "",
   "DataBaseURL": "",
-  "DataBaseRoot": "./database"
+  "DataBaseRoot": "./database",
+  "Administrators": [
+    "663378999103324180",
+    "494898279000047616",
+    "801370288825565185"
+  ]
 }
