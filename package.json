@@ -1,0 +1,25 @@
+{
+  "name": "chillbot",
+  "version": "1.0.0",
+  "description": "Бот для сервера Just Chilling",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "mongodb": "^3.6.6",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haha-classic/ChillBot.git"
+  },
+  "author": "haha classic#7777",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haha-classic/ChillBot/issues"
+  },
+  "homepage": "https://github.com/haha-classic/ChillBot#readme"
+}
