@@ -11,3 +11,4 @@ class ChillBotCommand {
         this.premium = options.premium || false;
     }
 }
+module.exports = ChillBotCommand;
