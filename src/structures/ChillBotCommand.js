@@ -5,7 +5,7 @@ class ChillBotCommand {
         this.category = options;
         this.usage = options.usage || 'Пример использования команды не установлен.';
         this.args = options.args || false;
-        this.onlyDev = options.onlyDev || false;
+        this.public = options.public || true;
         this.aliases = options.aliases || [];
         this.cooldown = options.cooldown || 0;
         this.premium = options.premium || false;
