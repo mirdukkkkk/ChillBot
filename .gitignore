@@ -1,2 +1,5 @@
 # Ненада
 node_modules/
+
+# Тоже ненадо
+package-lock.json
