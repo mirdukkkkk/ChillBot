@@ -14,7 +14,6 @@ class ChillBotClient extends Client {
 
         this.listeners = new Collection();
         this.commands = new Collection();
-        this.interactions = new Collection();
     }
 
     get database() {
@@ -25,7 +24,6 @@ class ChillBotClient extends Client {
         await this.mongo.connect();
         await LoaderMaster.loadListeners('../listeners');
         await LoaderMaster.loadCommands('../commands');
-        await LoaderMaster.loadInteractions('../interactions');
         return this.login(this.settings.token).catch(console.error);
     }
 };
