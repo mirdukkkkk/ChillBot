@@ -29,8 +29,10 @@ class CommandsExecutorMaster {
         if(cooldown.has(this.message.author.id) && cooldown.get(this.message.author.id) === command?.name) return this.message.react('⏱️').catch();
         if(command) {
             if(!this.message.guild.me.permissionsIn(this.message.channel).has('EMBED_LINKS')) return this.message.reply(`У меня нет права отпрвлять встроенные сообщения! Предоставте мне это право что-бы я смог работать корректно!`);
+            if(!this.client.settings.special_access.includes(this.message.author.id) && command.public === false) return this.message.react('❌');
             if(command.premium && this.message.member.roles.cache.has(this.client.settings.guild.premium)) return premiumRequired(this.message);
-            if(command.userPermissions.length > 0 && command.userPermissions.some((permission) => !this.message.member.permissions.has(permission))) return this.message.fail('')
+            if(command.userPermissions.length > 0 && command.userPermissions.some((permission) => !this.message.member.permissions.has(permission))) return this.message.fail(`${this.client.settings.emojis.warning} | У вас недостаточно прав!\n${this.client.settings.emojis.info} | Необходимые права: ${command.userPermissions.map((r) => `\`${permissions[r]}\``).join(', ')}`);
+            if(command.args && !args.length) this.message.fail(`${this.client.settings.emojis.warning} | Недостаточно аргументов!\n${this.client.settings.emojis.info} | Правильное использование команды: \`${data.prefix}${cmd} ${command.usage}\``);
         }
 
         try {
