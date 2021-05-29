@@ -18,7 +18,7 @@ class ChillBotMessage extends Message {
     return this.reply(
         new MessageEmbed()
         .setTitle(`${this.client.settings.emojis.failure} | Ошибка`)
-        .setColor('ff3333')
+        .setColor(this.client.settings.colors.error)
         .setDescription(args)
         .setFooter('ChillBot', this.client.user.displayAvatarURL({ format: 'webp', size: 2048 }))
         .setTimestamp()
