@@ -1,8 +1,8 @@
-const ChillBotListener = require('../structures/ChillBotListener');
-const CommandsExecutorMaster = require('../masters/CommandsExecutorMaster');
-const DatabaseMaster = require('../masters/DatabaseMaster');
+const ChillBotListener = require('../../structures/ChillBotListener');
+const CommandsExecutorMaster = require('../../masters/CommandsExecutorMaster');
+const DatabaseMaster = require('../../masters/DatabaseMaster');
 const { MessageEmbed, WebhookClient } = require('discord.js');
-const { UserSchema } = require('../utils/ChillBotSchemas');
+const { UserSchema } = require('../../utils/ChillBotSchemas');
 
 class MessageListener extends ChillBotListener {
     constructor() {
