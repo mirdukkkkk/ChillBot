@@ -3,7 +3,6 @@ const fs = require('fs').promises;
 
 const ChillBotListener = require('../structures/ChillBotListener');
 const ChillBotCommand = require('../structures/ChillBotCommand');
-const ChillBotInteraction = require('../structures/ChillBotInteraction');
 
 class LoaderMaster {
     constructor() {
