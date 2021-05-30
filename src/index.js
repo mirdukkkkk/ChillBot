@@ -2,7 +2,7 @@ const { Structures, Intents } = require('discord.js');
 const moment = require('moment');
 const ChillBotClient = require('./structures/ChillBotClient');
 
-console.log('[+] ChillBot Запускается!');
+console.log('[+] ChillBot запускается!');
 
 moment.locale('ru');
 

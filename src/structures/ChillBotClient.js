@@ -22,9 +22,10 @@ class ChillBotClient extends Client {
 
     async _start() {
         await this.mongo.connect();
-        await LoaderMaster.loadListeners('../listeners');
-        await LoaderMaster.loadCommands('../commands');
+        await LoaderMaster.loadListeners(this, '../listeners');
+        await LoaderMaster.loadCommands(this, '../commands');
         return this.login(this.settings.token).catch(console.error);
     }
-};
+}
+
 module.exports = ChillBotClient;

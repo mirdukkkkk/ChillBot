@@ -7,6 +7,7 @@ class ChillBotCommand {
         this.args = options.args || false;
         this.public = options.public || true;
         this.aliases = options.aliases || [];
+        this.userPermissions = options.userPermissions || [];
         this.cooldown = options.cooldown || 0;
         this.premium = options.premium || false;
     }
