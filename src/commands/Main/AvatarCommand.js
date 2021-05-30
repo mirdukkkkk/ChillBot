@@ -16,7 +16,7 @@ class AvatarCommand extends ChillBotComamnd {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
         return message.reply(
             new MessageEmbed()
-            .setTitle(`Аватар пользователя ${user.user.tag}`)
+            .setTitle(`Аватар пользователя ${user.nickname}`)
             .setColor(message.client.settings.colors.main)
             .setImage(user.user.displayAvatarURL({ size: 2048, dynamic: true }))
             .setFooter(message.guild.name, message.guild.iconURL())
