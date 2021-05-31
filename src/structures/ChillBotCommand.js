@@ -2,7 +2,7 @@ class ChillBotCommand {
     constructor(name, options = {}) {
         this.name = name;
         this.description = options.description || 'Описание для данной комнды не установлено.';
-        this.category = options;
+        this.category = options.category;
         this.usage = options.usage || 'Пример использования команды не установлен.';
         this.args = options.args || false;
         this.public = options.public || true;
