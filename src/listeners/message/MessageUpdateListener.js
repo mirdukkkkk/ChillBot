@@ -1,6 +1,5 @@
 const ChillBotListener = require('../../structures/ChillBotListener');
 const CommandsExecutorMaster = require('../../masters/CommandsExecutorMaster');
-const MessageListener = require('./MessageListener');
 
 class MessageUpdateListener extends ChillBotListener {
     constructor() {
@@ -15,4 +14,4 @@ class MessageUpdateListener extends ChillBotListener {
     }
 }
 
-module.exports = MessageListener;
+module.exports = MessageUpdateListener;
