@@ -24,5 +24,8 @@
     "colors": {
         "main": "e66c07",
         "error": "ff3333"
+    },
+    "badges": {
+        "top": "😎"
     }
 }
