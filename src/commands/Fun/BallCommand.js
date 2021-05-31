@@ -13,7 +13,7 @@ class BallCommand extends ChillBotComamnd {
     }
 
     async run(message, args) {
-        const anwsers = [
+        const answers = [
             'Да.',
             'Нет.',
             'Точно нет!',
@@ -31,7 +31,7 @@ class BallCommand extends ChillBotComamnd {
             'Морковка передал - возможно.'
         ];
 
-        if(args.join(' ').length < 1024) return message.fail(`${message.client.settings.emojis.info} | Длинна вопроса не должна быть длинее 1204 символа!`);
+        if(args.join(' ').length > 1024) return message.fail(`${message.client.settings.emojis.info} | Длинна вопроса не должна быть длинее 1024 символа!`);
 
         return message.reply(
             new MessageEmbed()
@@ -39,10 +39,12 @@ class BallCommand extends ChillBotComamnd {
             .setColor(message.client.settings.colors.main)
             .addFields(
                 { name: 'Вопрос', value: args.join(' '), inline: true },
-                { name: 'Ответ', value: anwsers[Math.floor(Math.random() * answers.length)], inline: true }
+                { name: 'Ответ', value: answers[Math.floor(Math.random() * answers.length)], inline: true }
             )
             .setFooter(message.guild.name, message.guild.iconURL())
             .setTimestamp()
         );
     }
 }
+
+module.exports = BallCommand;
