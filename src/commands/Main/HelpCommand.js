@@ -58,3 +58,5 @@ class HelpCommand extends ChillBotCommand {
         }
     }
 }
+
+module.exports = HelpCommand;
