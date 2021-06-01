@@ -38,7 +38,8 @@ class CommandsExecutorMaster {
         try {
             command.run(this.message, args);
         } catch(error) {
-            this.client.emit('commandError', error, this.message);
+            console.error(error);
+            //this.client.emit('commandError', error, this.message);
         }
 
         cooldown.set(this.message.author.id, command.name);
