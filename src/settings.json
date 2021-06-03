@@ -8,7 +8,7 @@
         "info": "ℹ️"
     },
     "guild": {
-        "prefix": "#",
+        "prefix": ".",
         "premium": "773241143537303582"
     },
     "special_access": [
@@ -26,6 +26,6 @@
         "error": "ff3333"
     },
     "badges": {
-        "top": "😎"
+        
     }
 }
