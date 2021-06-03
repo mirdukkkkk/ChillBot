@@ -12,7 +12,7 @@ class CommandsExecutorMaster {
 
     findCommand(commandName) {
         const command = this.client?.commands.get(commandName);
-        if (command) {
+        if(command) {
             return command;
         } else return this.client?.commands.find((c) => c?.aliases.includes(commandName));
     }
@@ -28,6 +28,7 @@ class CommandsExecutorMaster {
 
         if(cooldown.has(this.message.author.id) && cooldown.get(this.message.author.id) === command?.name) return this.message.react('⏱️').catch();
         if(command) {
+            if(!this.message.guild.me.permissionsIn(this.message.channel).has('SEND_MESSAGES')) return;
             if(!this.message.guild.me.permissionsIn(this.message.channel).has('EMBED_LINKS')) return this.message.reply(`У меня нет права отпрвлять встроенные сообщения! Предоставте мне это право что-бы я смог работать корректно!`);
             if(!this.client.settings.special_access.includes(this.message.author.id) && command.public === false) return this.message.react('❌');
             if(command.premium && this.message.member.roles.cache.has(this.client.settings.guild.premium)) return premiumRequired(this.message);
@@ -39,7 +40,6 @@ class CommandsExecutorMaster {
             command.run(this.message, args);
         } catch(error) {
             console.error(error);
-            //this.client.emit('commandError', error, this.message);
         }
 
         cooldown.set(this.message.author.id, command.name);
