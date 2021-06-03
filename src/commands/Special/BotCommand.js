@@ -7,7 +7,6 @@ class StatusCommand extends ChillBotCommand {
             category: 'special',
             description: 'Управление ботом',
             usage: '<опция>',
-            args: true,
             public: false,
             cooldown: 3
         });
@@ -21,11 +20,13 @@ class StatusCommand extends ChillBotCommand {
                 message.reply(
                     new MessageEmbed()
                     .setTitle(`${message.client.settings.emojis.bot} | Управление ботом`)
+                    .setColor(message.client.settings.colors.main)
                     .setDescription(`${message.client.settings.emojis.info} | Статус бота сменён на \`${args.slice(1).join(' ')}\``)
                     .setThumbnail(message.client.user.displayAvatarURL({ format: 'png', size: 2048 }))
                     .setFooter(message.guild.name, message.guild.iconURL())
                     .setTimestamp()
                 );
+                message.client.user.setActivity(args.slice(1).join(' '), { type: 3 });
                 break;
             }
             default: {
