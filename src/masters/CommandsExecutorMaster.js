@@ -33,7 +33,7 @@ class CommandsExecutorMaster {
             if(!this.client.settings.special_access.includes(this.message.author.id) && command.public === false) return this.message.react('❌');
             if(command.premium && this.message.member.roles.cache.has(this.client.settings.guild.premium)) return premiumRequired(this.message);
             if(command.userPermissions.length > 0 && command.userPermissions.some((permission) => !this.message.member.permissions.has(permission))) return this.message.fail(`${this.client.settings.emojis.warning} | У вас недостаточно прав!\n${this.client.settings.emojis.info} | Необходимые права: ${command.userPermissions.map((r) => `\`${permissions[r]}\``).join(', ')}`);
-            if(command.args && !args.length) this.message.fail(`${this.client.settings.emojis.warning} | Недостаточно аргументов!\n${this.client.settings.emojis.info} | Правильное использование команды: \`${data.prefix}${cmd} ${command.usage}\``);
+            if(command.args && !args.length) return this.message.fail(`${this.client.settings.emojis.warning} | Недостаточно аргументов!\n${this.client.settings.emojis.info} | Правильное использование команды: \`${data.prefix}${cmd} ${command.usage}\``);
         }
 
         try {
