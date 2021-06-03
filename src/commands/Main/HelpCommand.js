@@ -32,7 +32,7 @@ class HelpCommand extends ChillBotCommand {
         }
 
         const command = message.client.commands.get(args[0]);
-        if(!command || command.category === 'developer') return message.fail(`${message.client.settings.emojis.info} | Указанная вами команда не была найдена!`);
+        if(!command || command.category === 'special') return message.fail(`${message.client.settings.emojis.info} | Указанная вами команда не была найдена!`);
 
         return message.reply(
             new MessageEmbed()
