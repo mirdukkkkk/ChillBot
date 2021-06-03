@@ -19,9 +19,7 @@ class UserCommand extends ChillBotComamnd {
             new MessageEmbed()
             .setTitle('👤 | Профиль пользователя')
             .setColor(message.client.settings.colors.main)
-            .setDescription(
-                `📎 | Тег пользователя: \`${user.user.tag}\`\n🖇️ | Никнейм на сервере: \`${user.nickname || 'Не установлен'}\`\n🆔 | ID пользователя: \`${user.id}\`\n🗓️ | Дата регистрации: \`${new Date(user.user.createdAt).toISOString().replace('T', ' ').substr(0, 19)}\`\n🏅 | Значки: ${DataUser.badges.map((b) => message.client.settings.badges[b]).join(' / ') || '`Отсуствуют`'}`
-            )
+            .setDescription(`📎 | Тег пользователя: \`${user.user.tag}\`\n🖇️ | Никнейм на сервере: \`${user.nickname || 'Не установлен'}\`\n🆔 | ID пользователя: \`${user.id}\`\n🗓️ | Дата регистрации: \`${new Date(user.user.createdAt).toISOString().replace('T', ' ').substr(0, 19)}\`\n🔌 | Присоеденился к серверу: \`${new Date(user.joinedTimestamp).toISOString().replace('T', ' ').substr(0, 19)}\`\n🏅 | Значки: ${DataUser.badges.map((b) => message.client.settings.badges[b]).join(' / ') || '`Отсуствуют`'}`)
             .setFooter(message.guild.name, message.guild.iconURL())
             .setTimestamp()
         );
