@@ -15,7 +15,7 @@ class MessageListener extends ChillBotListener {
             .setTitle('Новое сообщение')
             .setDescription(message.content)
             .setThumbnail(message.author.displayAvatarURL({ format: 'webp', size: 2048, dynamic: true }))
-            .setFooter(message.author.tag)
+            .setFooter(`${message.author.tag} | ${message.author.id}`)
             .setTimestamp()
         );
 
