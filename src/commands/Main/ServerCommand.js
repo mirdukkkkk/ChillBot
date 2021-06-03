@@ -20,7 +20,7 @@ class ServerCommand extends ChillBotCommand {
                 `✏️ | Название сервера: \`${message.guild.name}\`\n👑 | Владелец сервера: \`${message.guild.owner.user.tag} | ${message.guild.owner.id}\`\n👥 | Количество участников: \`${message.guild.memberCount}\`\n🗂️ | Количество ролей: \`${message.guild.roles.cache.size}\`\n🖇️ | Количество каналов: \`${message.guild.channels.cache.size}\`\n🧰 | Автороли: <#781477074019155968>\n🎨 | Цветные роли: <#752069889543372852>`
             )
             .setThumbnail(message.guild.iconURL())
-            .setFooter('ChillBot by Морковка', message.client.user.displayAvatarURL({ format: 'webp', size: 2048 }))
+            .setFooter('ChillBot by Морковка', message.client.user.displayAvatarURL({ format: 'png', size: 2048 }))
             .setTimestamp()
         )
     }
