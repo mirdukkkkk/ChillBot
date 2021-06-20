@@ -1,4 +1,3 @@
-const { MessageEmbed } = require('discord.js');
 const ChillBotCommand = require('../../structures/ChillBotCommand');
 
 class BadgesCommand extends ChillBotCommand {
