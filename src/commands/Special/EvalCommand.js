@@ -13,6 +13,7 @@ class EvalCommand extends ChillBotCommand {
     }
 
     async run(message, args) {
+        if(!message.client.constants.special_access.includes(message.author.id)) return message.react('❌');
         try {
             let executed = eval(args.join(' '));
             message.reply(require('util').inspect(executed, { depth: 0, maxArrayLength: null }), { code: 'js' });
@@ -21,3 +22,5 @@ class EvalCommand extends ChillBotCommand {
         }
     }
 }
+
+module.exports = EvalCommand;
