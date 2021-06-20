@@ -6,6 +6,7 @@ class ChillBotClient extends Client {
     constructor(options) {
         super(options);
         this.settings = require('../settings.json');
+        this.constants = require('../utils/ChillBotConstants');
 
         this.mongo = new MongoClient(this.settings.database, {
             useNewUrlParser: true,
