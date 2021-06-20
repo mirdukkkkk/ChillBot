@@ -42,7 +42,7 @@ class BallCommand extends ChillBotComamnd {
                 { name: 'Вопрос', value: args.join(' '), inline: true },
                 { name: 'Ответ', value: answers[Math.floor(Math.random() * answers.length)], inline: true }
             )
-            .setFooter(message.guild.name, message.guild.iconURL())
+            .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
             .setTimestamp()
         );
     }
