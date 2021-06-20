@@ -13,6 +13,7 @@ class BadgesCommand extends ChillBotCommand {
     }
 
     async run(message, args) {
+        if(!message.client.constants.special_access.includes(message.author.id)) return message.react('❌');
         let member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         if(!member) return message.fail(`${message.client.settings.emojis.warning} | Указанный вами пользователь не был найден!`);
         let data = await message.client.database.collection('users').findOne({ userID: member.id });
