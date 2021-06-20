@@ -1,5 +1,5 @@
 {
-    "token": "ODEyNzY3ODg2NTQ3MzUzNjEy.YDFjFA.LiAUl7xT_SYl1YoYFzSsDd6GzvY",
+    "token": "ODEyNzY3ODg2NTQ3MzUzNjEy.YDFjFA.LiAUl7xT_SYl1YoYFzSsDd6GzvY8",
     "database": "mongodb+srv://haha-classic:12kate04@chillbotdatabase.ewibq.mongodb.net/Main?retryWrites=true&w=majority",
     "emojis": {
         "failure": "<a:828727020493733918:848208109414645810>",
@@ -12,11 +12,6 @@
         "prefix": ".",
         "premium": "773241143537303582"
     },
-    "special_access": [
-        "663378999103324180",
-        "494898279000047616",
-        "801370288825565185"
-    ],
     "panel": {
         "channel": "812768458840342542",
         "message": "848973234422677506",
@@ -25,8 +20,5 @@
     "colors": {
         "main": "e66c07",
         "error": "ff3333"
-    },
-    "badges": {
-        
     }
 }
