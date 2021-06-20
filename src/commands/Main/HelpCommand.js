@@ -21,7 +21,7 @@ class HelpCommand extends ChillBotCommand {
             .setColor(message.client.settings.colors.main)
             .setDescription(`Если хотите знать более подробную информацию о команде - вводите \`${data.prefix}${this.name} ${this.usage}\``)
             .setThumbnail(message.client.user.avatarURL({ size: 2048 }))
-            .setFooter(message.guild.name, message.guild.iconURL())
+            .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
             .setTimestamp();
 
             Object.keys(categories).forEach((i) => {
@@ -45,7 +45,7 @@ class HelpCommand extends ChillBotCommand {
                 { name: 'Использование', value: command.usage || 'Без аргументов', inline: true },
                 { name: 'Кулдаун', value: `${command.cooldown} секунд(-ы)`, inline: true }
             )
-            .setFooter(message.guild.name, message.guild.iconURL())
+            .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
             .setTimestamp()
         )
     }
