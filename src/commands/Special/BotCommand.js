@@ -13,17 +13,19 @@ class StatusCommand extends ChillBotCommand {
     }
 
     async run(message, args) {
+        if(!message.client.constants.special_access.includes(message.author.id)) return message.react('❌');
         let option = args[0];
         switch(option) {
             case 'status': {
-                if(args.slice(1).join(' ').length < 50 && args.slice(1).join(' ').length === 0) return message.fail(`${message.client.settings.emojis.info} | Статус не должен содержать 0 символов и привышать 50 символов в длинну!`);
+                if(args.slice(1).join(' ').length > 75) return message.fail(`${message.client.settings.emojis.info} | Статус не должен привышать 75 символов в длинну!`);
+                if(args.slice(1).join(' ').length === 0) return message.fail(`${message.client.settings.emojis.info} | Статус не может быть длинной 0 символов!`)
                 message.reply(
                     new MessageEmbed()
                     .setTitle(`${message.client.settings.emojis.bot} | Управление ботом`)
                     .setColor(message.client.settings.colors.main)
                     .setDescription(`${message.client.settings.emojis.info} | Статус бота сменён на \`${args.slice(1).join(' ')}\``)
                     .setThumbnail(message.client.user.displayAvatarURL({ format: 'png', size: 2048 }))
-                    .setFooter(message.guild.name, message.guild.iconURL())
+                    .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
                     .setTimestamp()
                 );
                 message.client.user.setActivity(args.slice(1).join(' '), { type: 3 });
