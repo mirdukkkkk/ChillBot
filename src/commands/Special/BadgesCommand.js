@@ -18,12 +18,17 @@ class BadgesCommand extends ChillBotCommand {
         if(!member) return message.fail(`${message.client.settings.emojis.warning} | Указанный вами пользователь не был найден!`);
         let data = await message.client.database.collection('users').findOne({ userID: member.id });
         if(!data) return message.fail(`${message.client.settings.emojis.warning} | Пользователь отсуствует в базе данных!\n${message.client.settings.emojis.info} | Свяжитесь с создателем бота для дополнительной информации.`);
-        message.client.database.collection('users').updateOne({ userID: member.id }, {
-            [data.badges.includes(args[1]) ? '$pull' : '$push']: {
-                badges: args[1]
-            }
-        });
-        message.react(message.client.settings.emojis.done);
+        if(!message.client.constants.badges.includes(args[1])) return message.fail(`${message.client.settings.emojis.warning} | Указанного вами значка не существует!`)
+        try {
+            message.client.database.collection('users').updateOne({ userID: member.id }, {
+                [data.badges.includes(args[1]) ? '$pull' : '$push']: {
+                    badges: args[1]
+                }
+            });
+            message.react(message.client.settings.emojis.done);
+        } catch(error) {
+            message.reply(`Произошла неизвестная ошибка. Свяжитесь с разработчиком для дополнительной информации!\n${error}`);
+        }
     }
 }
 
