@@ -43,5 +43,12 @@ module.exports = {
     purcashed: '🏷️',
     moderation: '🛡️',
     boosted: '<:838727671139008522:856187717879463976>'
-  }
+  },
+  badgesArray: [
+    "developer",
+    "trusted",
+    "purcashed",
+    "moderation",
+    "boosted"
+  ]
 }
