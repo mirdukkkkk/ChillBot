@@ -17,9 +17,10 @@ class AvatarCommand extends ChillBotComamnd {
         return message.reply(
             new MessageEmbed()
             .setTitle(`Аватар пользователя ${user.nickname || user.user.username}`)
+            .setDescription(`**[WEBP](${user.user.displayAvatarURL({ size: 2048, dynamic: true })})** / **[ORIGINAL](${user.user.displayAvatarURL({ sdynamic: true })})** / **[FIXED](${user.user.displayAvatarURL({ size: 2048, dynamic: true })})**`)
             .setColor(message.client.settings.colors.main)
             .setImage(user.user.displayAvatarURL({ size: 2048, dynamic: true }))
-            .setFooter(message.guild.name, message.guild.iconURL())
+            .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
             .setTimestamp()
         );
     }
