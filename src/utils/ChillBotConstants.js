@@ -41,13 +41,13 @@ module.exports = {
   badges: {
     developer: '💻',
     trusted: '🤝',
-    purcashed: '🏷️',
+    purchased: '🏷️',
     moderation: '🛡️'
   },
   badgesArray: [
     "developer",
     "trusted",
-    "purcashed",
+    "purchased",
     "moderation"
   ]
 }
