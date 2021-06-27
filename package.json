@@ -10,18 +10,21 @@
     "node-fetch": "^2.6.1",
     "path": "^0.12.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^7.29.0"
+  },
   "scripts": {
-    "test": "node ./src/index.js"
+    "test": "node ./src/index.js",
+    "linter": "eslint --init"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/haha-classic/ChillBot.git"
+    "url": "https://github.com/haha-classic/ChillBot.git"
   },
   "author": "haha classic#7777",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/haha-classic/ChillBot/issues"
   },
-  "homepage": "https://github.com/haha-classic/ChillBot#readme"
+  "homepage": "https://github.com/haha-classic/ChillBot"
 }
