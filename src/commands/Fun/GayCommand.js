@@ -16,7 +16,7 @@ class GayCommand extends ChillBotComamnd {
         return message.reply(
             new MessageEmbed()
             .setTitle('🏳️‍🌈 | Гей')
-            .setColor('RAINBOW')
+            .setColor(message.client.settings.main)
             .setDescription(`${user.nickname || user.user.username} гей на ${Math.floor(Math.random() * (100 - 0 + 1)) + 0}%`)
             .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
             .setTimestamp()
