@@ -44,7 +44,8 @@ module.exports = {
     purchased: '🏷️',
     moderation: '🛡️',
     bumper: '🚀',
-    creator: '🎨'
+    creator: '🎨',
+    creative: '💡'
   },
   badgesArray: [
     "developer",
@@ -52,6 +53,7 @@ module.exports = {
     "purchased",
     "moderation",
     "bumper",
-    "creator"
+    "creator",
+    "creative"
   ]
 }
