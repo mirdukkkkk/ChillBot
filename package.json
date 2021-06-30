@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "node ./src/index.js",
-    "linter": "eslint --init"
+    "linter": "eslint ./src --fix"
   },
   "repository": {
     "type": "git",
