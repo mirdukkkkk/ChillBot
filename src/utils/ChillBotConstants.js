@@ -42,12 +42,16 @@ module.exports = {
     developer: '💻',
     trusted: '🤝',
     purchased: '🏷️',
-    moderation: '🛡️'
+    moderation: '🛡️',
+    bumper: '🚀',
+    creator: '🎨'
   },
   badgesArray: [
     "developer",
     "trusted",
     "purchased",
-    "moderation"
+    "moderation",
+    "bumper",
+    "creator"
   ]
 }
