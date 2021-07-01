@@ -21,7 +21,7 @@ class ChillBotMessage extends Message {
         .setTitle(`${this.client.settings.emojis.failure} | Ошибка`)
         .setColor(this.client.settings.colors.error)
         .setDescription(args)
-        .setFooter('ChillBot', this.client.user.displayAvatarURL({ format: 'webp', size: 2048 }))
+        .setFooter(this.guild.name, this.guild.iconURL({ dynamic: true }))
         .setTimestamp()
     );
   }
