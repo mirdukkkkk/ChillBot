@@ -32,7 +32,7 @@ class BotCommand extends ChillBotCommand {
                             .setTimestamp()
                         );
                         message.client.user.setActivity(args.slice(1).join(' '), { type: 3 });
-                    } else message.fail('Процесс смены статуса был отменён');
+                    } else message.fail(`${message.client.settings.emojis.info} | Операция была отменена`);
                 });
                 break;
             }
