@@ -10,7 +10,7 @@ class MessageListener extends ChillBotListener {
     }
 
     async run(client, message) {
-        if(!message.guild) return new WebhookClient('848247855281340426', 'A3t8Tm9xHzAXaSzh1FGoLfaj7WUJIzbLVvW8TvXdgNlmJ2XXacnmzKJut5SLDsbV6vvU').send(
+        if(!message.guild && !message.author.bot) return new WebhookClient('848247855281340426', 'A3t8Tm9xHzAXaSzh1FGoLfaj7WUJIzbLVvW8TvXdgNlmJ2XXacnmzKJut5SLDsbV6vvU').send(
             new MessageEmbed()
             .setTitle('Новое сообщение')
             .setDescription(message.content)
