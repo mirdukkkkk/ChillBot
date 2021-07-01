@@ -1,7 +1,7 @@
-const ChillBotComamnd = require('../../structures/ChillBotCommand');
+const ChillBotCommand = require('../../structures/ChillBotCommand');
 const { MessageEmbed } = require('discord.js');
 
-class UserCommand extends ChillBotComamnd {
+class UserCommand extends ChillBotCommand {
     constructor() {
         super('user', {
             description: 'Показывает информацию о определённом пользователе',
@@ -14,12 +14,12 @@ class UserCommand extends ChillBotComamnd {
 
     async run(message, args) {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
-        const DataUser = await message.client.database.collection('users').findOne({ userID: user.id }).badges.map((b) => message.client.constants.badges[b]).join(' / ') || '`Отсуствуют`';
+        const DataUser = await message.client.database.collection('users').findOne({ userID: user.id });
         return message.reply(
             new MessageEmbed()
             .setTitle('👤 | Профиль пользователя')
             .setColor(message.client.settings.colors.main)
-            .setDescription(`📎 | Тег пользователя: \`${user.user.tag}\`\n🖇️ | Никнейм на сервере: \`${user.nickname || 'Не установлен'}\`\n🆔 | ID пользователя: \`${user.id}\`\n🗓️ | Дата регистрации: \`${new Date(user.user.createdAt).toISOString().replace('T', ' ').substr(0, 19)}\`\n🔌 | Присоединился к серверу: \`${new Date(user.joinedTimestamp).toISOString().replace('T', ' ').substr(0, 19)}\`\n🏅 | Значки: ${DataUser}`)
+            .setDescription(`📎 | Тег пользователя: \`${user.user.tag}\`\n🖇️ | Никнейм на сервере: \`${user.nickname || 'Не установлен'}\`\n🆔 | ID пользователя: \`${user.id}\`\n🗓️ | Дата регистрации: \`${new Date(user.user.createdAt).toISOString().replace('T', ' ').substr(0, 19)}\`\n🔌 | Присоединился к серверу: \`${new Date(user.joinedTimestamp).toISOString().replace('T', ' ').substr(0, 19)}\`\n🏅 | Значки: ${DataUser.badges.map((b) => message.client.constants.badges[b]).join(' / ') || '`Отсуствуют`'}`)
             .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
             .setTimestamp()
         );
