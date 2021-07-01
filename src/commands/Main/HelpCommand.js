@@ -12,7 +12,7 @@ class HelpCommand extends ChillBotCommand {
     }
 
     async run(message, args) {
-        const categories = { main: 'Основное', fun: 'Развлечения' };
+        const categories = { main: 'Основное', moderation: 'Модеряция', fun: 'Развлечения' };
         const data = message.client.settings.guild;
 
         if(!args[0]) {
