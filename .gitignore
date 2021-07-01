@@ -3,3 +3,6 @@ node_modules/
 
 # Тоже ненадо
 package-lock.json
+
+# да
+src/dev/
