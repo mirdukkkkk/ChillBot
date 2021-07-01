@@ -21,7 +21,7 @@ class CommandsExecutorMaster {
     async runCommand() {
         if(this.message.author.bot) return;
 
-        const data = this.client.settings.guild;
+        const data = await this.client.database.collection('main').findOne({ name: 'guild' });
         if(!this.message.content.startsWith(data.prefix)) return;
 
         const [cmd, ...args] = this.message.content.slice(1).trim().split(/ +/g);
