@@ -37,7 +37,7 @@ class SuggestionsCommand extends ChillBotCommand {
                                     ideaChannel: null
                                 }
                             });
-                            return message.reply(
+                            message.reply(
                                 new MessageEmbed()
                                 .setTitle(`${message.client.settings.emojis.done} | Успешно`)
                                 .setColor('A5FF2A')
@@ -45,10 +45,11 @@ class SuggestionsCommand extends ChillBotCommand {
                                 .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
                                 .setTimestamp()
                             );
-                        } else return message.fail(`${message.client.settings.emojis.info} | Операция отменена.`);
+                        } else message.fail(`${message.client.settings.emojis.info} | Операция отменена.`);
                     });
+                    break;
                 }
-                if(!message.guild.channels.cache.has(channel.id)) return message.fail(`${message.client.settings.warning} | Указанного вами канала не существует на данном сервере.`);
+                if(!message.guild.channels.cache.has(channel?.id)) return message.fail(`${message.client.settings.warning} | Указанного вами канала не существует на данном сервере.`);
                 await new ChillBotConfirmation(message.client, message.author).init(
                     new MessageEmbed()
                     .setTitle(`${message.client.settings.emojis.info} | Подтверждение`)
@@ -72,7 +73,7 @@ class SuggestionsCommand extends ChillBotCommand {
                             .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
                             .setTimestamp()
                         );
-                    } else return message.fail(`${message.client.settings.emojis.info} | Операция отменена.`);
+                    } else message.fail(`${message.client.settings.emojis.info} | Операция отменена.`);
                 });
                 break;
             }
