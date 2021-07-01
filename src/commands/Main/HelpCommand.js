@@ -12,8 +12,8 @@ class HelpCommand extends ChillBotCommand {
     }
 
     async run(message, args) {
-        const categories = { main: 'Основное', moderation: 'Модерация', fun: 'Развлечения' };
-        const data = message.client.database.collection('main').findOne({ name: 'guild' });
+        const categories = { main: 'Основное', moderation: 'Модерация', settings: 'Настройки', fun: 'Развлечения' };
+        const data = await message.client.database.collection('main').findOne({ name: 'guild' });
 
         if(!args[0]) {
             const embed = new MessageEmbed()
