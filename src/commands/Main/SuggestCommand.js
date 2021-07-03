@@ -63,11 +63,13 @@ class SuggestCommand extends ChillBotCommand {
                     switch(res.data.custom_id) {
                         case 'delete': {
                             if(res.member.permissions.has('MANAGE_GUILD') || res.member.id === message.author.id) {
+                                /*
                                 message.client.database.collection('main').updateOne({ name: 'guild' }, {
                                     $pull: {
                                         ideas: { id }
                                     }
                                 });
+                                */
                                 await message.client.api.channels(data.ideaChannel).messages(m.id).delete().catch(null);
                             }
                             break;
