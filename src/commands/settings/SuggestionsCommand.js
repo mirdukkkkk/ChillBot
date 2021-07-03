@@ -90,7 +90,7 @@ class SuggestionsCommand extends ChillBotCommand {
                     new MessageEmbed()
                     .setTitle(`${message.client.settings.emojis.done} | Успешно`)
                     .setColor('A5FF2A')
-                    .setDescription(`👤 | Администратор: ${message.author.tag}\n📝 | ${!data.ideaBlacklist?.includes(user.id) ? 'Внёс в ЧС' : 'Вынес из ЧС'}: ${user.user.tag} (${user.user.id})`)
+                    .setDescription(`👤 | Администратор: ${message.author.tag}\n📝 | ${!data.ideaBlacklist?.includes(user.id) ? 'Внёс в ЧС' : 'Вынес из ЧС'}: ${user.user.tag} (${user.id})`)
                     .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
                     .setTimestamp()
                 );
