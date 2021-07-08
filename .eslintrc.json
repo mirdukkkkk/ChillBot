@@ -74,7 +74,6 @@
         "eqeqeq": "error",
         "func-call-spacing": "error",
         "func-name-matching": "error",
-        "func-names": "error",
         "func-style": [
             "error",
             "expression"
@@ -185,7 +184,6 @@
         "no-script-url": "error",
         "no-self-compare": "error",
         "no-sequences": "error",
-        "no-shadow": "error",
         "no-tabs": "error",
         "no-template-curly-in-string": "error",
         "no-ternary": "off",
@@ -213,7 +211,6 @@
         "no-whitespace-before-property": "error",
         "nonblock-statement-body-position": "error",
         "object-curly-newline": "error",
-        "object-shorthand": "error",
         "one-var": "off",
         "one-var-declaration-per-line": "error",
         "operator-assignment": "error",
