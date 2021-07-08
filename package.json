@@ -11,9 +11,10 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "eslint": "^7.29.0"
+    "eslint": "^7.30.0"
   },
   "scripts": {
+    "start": "node ./src/index.js",
     "test": "node ./src/index.js",
     "linter": "eslint ./src --fix"
   },
