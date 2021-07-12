@@ -7,7 +7,8 @@ class ReadyListener extends ChillBotListener {
     }
 
     async run(client) {
-        client.user.setActivity(`на сервер Just Chilling`, { type: 3 });
+        /*await client.database.collection('main').findOne({ name: 'bot' }).status*/
+        client.user.setActivity('На сервер Just Chilling', { type: 3 });
         /*setInterval(() => {
             client.channels.cache.get(client.settings.panel.channel).messages.cache.get(client.settings.panel.message).edit('Статиcтика бота', 
                 new MessageEmbed()
