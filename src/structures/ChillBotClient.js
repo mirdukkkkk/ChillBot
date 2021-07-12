@@ -7,8 +7,12 @@ class ChillBotClient extends Client {
         super(options);
         this.settings = require('../settings.json');
         this.constants = require('../utils/ChillBotConstants');
+        this.functions = require('../utils/ChillBotFunctions');
         this.cache = {
             buttons: new Map()
+        }
+        this.cooldowns = {
+            quiz: new Map()
         }
 
         this.mongo = new MongoClient(this.settings.database, {
