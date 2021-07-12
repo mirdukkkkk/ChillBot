@@ -74,10 +74,6 @@
         "eqeqeq": "error",
         "func-call-spacing": "error",
         "func-name-matching": "error",
-        "func-style": [
-            "error",
-            "expression"
-        ],
         "function-call-argument-newline": [
             "error",
             "consistent"
@@ -134,13 +130,11 @@
         "no-else-return": "off",
         "no-empty-function": "error",
         "no-eq-null": "error",
-        "no-eval": "off",
         "no-extend-native": "error",
         "no-extra-bind": "error",
         "no-extra-label": "error",
         "no-extra-parens": "off",
         "no-floating-decimal": "error",
-        "no-implicit-coercion": "error",
         "no-implicit-globals": "error",
         "no-implied-eval": "error",
         "no-inline-comments": "error",
@@ -152,13 +146,6 @@
         "no-lonely-if": "error",
         "no-loop-func": "error",
         "no-loss-of-precision": "error",
-        "no-magic-numbers": "off",
-        "no-mixed-operators": [
-            "error",
-            {
-                "allowSamePrecedence": true
-            }
-        ],
         "no-multi-assign": "error",
         "no-multi-spaces": "error",
         "no-multi-str": "error",
@@ -221,7 +208,6 @@
         "prefer-const": "off",
         "prefer-destructuring": "off",
         "prefer-exponentiation-operator": "error",
-        "prefer-named-capture-group": "error",
         "prefer-numeric-literals": "error",
         "prefer-object-spread": "error",
         "prefer-promise-reject-errors": "error",
