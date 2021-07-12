@@ -18,7 +18,7 @@ class BotCommand extends ChillBotCommand {
         let option = args[0];
         switch(option) {
             case 'status': {
-                if(args.slice(1).join(' ').length > 75) return message.fail(`${message.client.settings.emojis.info} | Статус не должен привышать 75 символов в длинну!`);
+                if(args.slice(1).join(' ').length > 120) return message.fail(`${message.client.settings.emojis.info} | Статус не должен привышать 120 символов в длинну!`);
                 if(args.slice(1).join(' ').length === 0) return message.fail(`${message.client.settings.emojis.info} | Статус не может быть длинной 0 символов!`);
 
                 await new ChillBotConfirmation(message.client, message.author).init(`Вы уверены, что хотите сменить статус бота?`, message.channel).then(async (response) => {
@@ -32,6 +32,13 @@ class BotCommand extends ChillBotCommand {
                             .setTimestamp()
                         );
                         message.client.user.setActivity(args.slice(1).join(' '), { type: 3 });
+                        /*
+                        message.client.database.collection('main').findOne({ name: 'bot' }).updateOne({ name: 'bot' }, {
+                            $set: {
+                                status: args.slice(1).join(' ')
+                            }
+                        });
+                        */
                     } else message.fail(`${message.client.settings.emojis.info} | Операция была отменена`);
                 });
                 break;
