@@ -1,7 +1,7 @@
 const ChillBotListener = require('../../structures/ChillBotListener');
 const CommandsExecutorMaster = require('../../masters/CommandsExecutorMaster');
 const DatabaseMaster = require('../../masters/DatabaseMaster');
-const { MessageEmbed, WebhookClient } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { UserSchema } = require('../../utils/ChillBotSchemas');
 
 class MessageListener extends ChillBotListener {
@@ -10,14 +10,22 @@ class MessageListener extends ChillBotListener {
     }
 
     async run(client, message) {
-        if(!message.guild && !message.author.bot) return new WebhookClient('848247855281340426', 'A3t8Tm9xHzAXaSzh1FGoLfaj7WUJIzbLVvW8TvXdgNlmJ2XXacnmzKJut5SLDsbV6vvU').send(
-            new MessageEmbed()
-            .setTitle('Новое сообщение')
-            .setDescription(message.content)
-            .setThumbnail(message.author.displayAvatarURL({ format: 'webp', size: 2048, dynamic: true }))
-            .setFooter(`${message.author.tag} | ${message.author.id}`)
-            .setTimestamp()
-        );
+        if(!message.guild && !message.author.bot) {
+            if(!!message.attachments.first()) {
+                const arr = [];
+                await message.attachments.map(att => arr.push(att.url));
+                return client.constants.webhooks.dm.send(new MessageEmbed().setTitle('Новое сообщение').setDescription(message.content.length === 0 ? 'Пустое сообщение' : message.content).addField(`Вложения`, arr.join('\n'), false).setThumbnail(message.author.displayAvatarURL({ format: 'webp', dynamic: true })).setFooter(`${message.author.tag} | ${message.author.id}`).setTimestamp());
+            } else {
+                return client.constants.webhooks.dm.send(
+                    new MessageEmbed()
+                    .setTitle('Новое сообщение')
+                    .setDescription(message.content.length === 0 ? 'Пустое сообщение' : message.content)
+                    .setThumbnail(message.author.displayAvatarURL({ format: 'webp', dynamic: true }))
+                    .setFooter(`${message.author.tag} | ${message.author.id}`)
+                    .setTimestamp()
+                );
+            }
+        }
 
         const user = await client.database.collection('users').findOne({ userID: message.author.id });
         if(!user && !message.author.bot) {
