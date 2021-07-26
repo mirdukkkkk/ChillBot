@@ -37,7 +37,7 @@ class SuggestCommand extends ChillBotCommand {
         await new ChillBotConfirmation(message.client, message.author).init(`Вы уверены что хотите отправить своё предложение?`, message.channel).then(async (response) => {
             if(response) {
                 const id = (data.ideas?.length ?? 0) + 1;
-                const embed = new MessageEmbed().setTitle(`Предложение №${id}`).setColor(message.client.settings.colors.main).setDescription(args.join(' ')).addField(`Дополнительные сведения:`, `Автор: **${message.author.tag}** (${message.author.id})\nДата отправки: **${new Date().toLocaleString('ru')}**`).setFooter(message.guild.name, message.guild.iconURL()).setTimestamp().toJSON();
+                const embed = new MessageEmbed().setTitle(`Предложение №${id}`).setColor(message.client.settings.colors.main).setDescription(args.join(' ')).addField(`Дополнительные сведения:`, `Автор: **${message.author.tag}** (${message.author.id})\nДата отправки: **${new Date().toLocaleString('ru')}**`).setFooter(message.guild.name, message.guild.iconURL({ dynamic: true })).setTimestamp().toJSON();
                 const m = await message.client.api.channels(data.ideaChannel).messages.post({
                     data: {
                         content: null,
