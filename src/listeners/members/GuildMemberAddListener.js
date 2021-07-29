@@ -1,5 +1,5 @@
 const ChillBotListener = require('../../structures/ChillBotListener');
-const DatabaseMaster = require('../../masters/DatabaseMaster');
+const DatabaseService = require('../../services/DatabaseService');
 
 class GuildMemberAddListener extends ChillBotListener {
     constructor() {
@@ -8,7 +8,7 @@ class GuildMemberAddListener extends ChillBotListener {
 
     async run(client, member) {
         if(!await client.database.collection('users').findOne({ userID: member.user.id })) {
-            DatabaseMaster.createUserEntry(client, {
+            DatabaseService.createUserEntry(client, {
                 options: { upsert: true },
                 user: member.user.id,
                 schema: require('../../utils/ChillBotSchemas').UserSchema
