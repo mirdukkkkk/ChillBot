@@ -12,7 +12,7 @@ class HelpCommand extends ChillBotCommand {
     }
 
     async run(message, args) {
-        const categories = { main: 'Основное', moderation: 'Модерация', settings: 'Настройки', fun: 'Развлечения' };
+        const categories = { main: 'Основное', fun: 'Развлечения', moderation: 'Модерация', settings: 'Настройки' };
         const data = await message.client.database.collection('main').findOne({ name: 'guild' });
 
         if(!args[0]) {
@@ -47,7 +47,7 @@ class HelpCommand extends ChillBotCommand {
             )
             .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
             .setTimestamp()
-        )
+        );
     }
 }
 
