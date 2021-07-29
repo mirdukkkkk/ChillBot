@@ -7,12 +7,12 @@ class AvatarCommand extends ChillBotComamnd {
             description: 'Отображает вашу аватарку или аватарку указанного пользователя',
             category: 'main',
             usage: '[упоминание/ID]',
-            aliases: 'ava',
+            aliases: ['ava'],
             cooldown: 3
         });
     }
 
-    run(message, args) {
+    async run(message, args) {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
         return message.reply(
             new MessageEmbed()
