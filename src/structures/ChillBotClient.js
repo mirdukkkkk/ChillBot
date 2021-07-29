@@ -1,6 +1,6 @@
 const { Client, Collection } = require('discord.js');
 const { MongoClient } = require('mongodb');
-const LoaderMaster = require('../masters/LoaderMaster');
+const LoaderMaster = require('../services/LoaderService');
 
 class ChillBotClient extends Client {
     constructor(options) {
@@ -12,7 +12,8 @@ class ChillBotClient extends Client {
             buttons: new Map()
         }
         this.cooldowns = {
-            quiz: new Map()
+            quiz: new Map(),
+            react: new Map()
         }
 
         this.mongo = new MongoClient(this.settings.database, {
