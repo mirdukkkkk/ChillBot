@@ -12,8 +12,7 @@ class ChillBotClient extends Client {
             buttons: new Map()
         }
         this.cooldowns = {
-            quiz: new Map(),
-            react: new Map()
+            quiz: new Map()
         }
 
         this.mongo = new MongoClient(this.settings.database, {
