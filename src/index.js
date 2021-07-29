@@ -7,6 +7,7 @@ console.log('[+] ChillBot запускается!');
 moment.locale('ru');
 
 Structures.extend('Message', () => require('./structures/DJS/ChillBotMessage'));
+Structures.extend('GuildMember', () => require('./structures/DJS/ChillBotGuildMember'));
 
 const client = new ChillBotClient({
     ws: {
