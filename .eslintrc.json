@@ -15,7 +15,6 @@
             "error",
             "never"
         ],
-        "array-callback-return": "error",
         "array-element-newline": "off",
         "arrow-body-style": "off",
         "arrow-parens": "off",
@@ -71,7 +70,6 @@
             "error",
             "never"
         ],
-        "eqeqeq": "error",
         "func-call-spacing": "error",
         "func-name-matching": "error",
         "function-call-argument-newline": [
