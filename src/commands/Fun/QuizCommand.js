@@ -5,7 +5,7 @@ const ChillBotComamnd = require('../../structures/ChillBotCommand');
 class QuizCommand extends ChillBotComamnd {
     constructor() {
         super('quiz', {
-            description: 'Я задаю тебе вопрос, ты должен ответить на его правильно',
+            description: 'Я задаю тебе вопрос, ты должен ответить на него правильно',
             aliases: ['qz'],
             category: 'fun',
             cooldown: 5
