@@ -6,7 +6,7 @@ const ChillBotCommand = require('../structures/ChillBotCommand');
 
 class LoaderMaster {
     constructor() {
-        throw new Error(`Класс ${this.constructor.name} не инициализирован!`);
+        throw new Error(`Класс ${this.constructor.name} не может быть инициализирован!`);
     }
 
     static async loadListeners(client, dir = '') {
