@@ -1,8 +1,9 @@
 const ChillBotListener = require('../../structures/ChillBotListener');
-const CommandsExecutorMaster = require('../../masters/CommandsExecutorMaster');
-const DatabaseMaster = require('../../masters/DatabaseMaster');
+const CommandsExecutorService = require('../../services/CommandsExecutorService');
+const DatabaseService = require('../../services/DatabaseService');
 const { MessageEmbed } = require('discord.js');
 const { UserSchema } = require('../../utils/ChillBotSchemas');
+const WordDetectorService = require('../../services/WordDetectorService');
 
 class MessageListener extends ChillBotListener {
     constructor() {
@@ -10,6 +11,7 @@ class MessageListener extends ChillBotListener {
     }
 
     async run(client, message) {
+        WordDetectorService.msgReact(message);
         if(!message.guild && !message.author.bot) {
             if(!!message.attachments.first()) {
                 const arr = [];
@@ -29,14 +31,14 @@ class MessageListener extends ChillBotListener {
 
         const user = await client.database.collection('users').findOne({ userID: message.author.id });
         if(!user && !message.author.bot) {
-            return DatabaseMaster.createUserEntry(client, {
+            return DatabaseService.createUserEntry(client, {
                 options: { upsert: true },
                 user: message.member.id,
                 schema: UserSchema
             });
         }
 
-        const executor = new CommandsExecutorMaster(message, client);
+        const executor = new CommandsExecutorService(message, client);
         return executor.runCommand();
     }
 }
