@@ -1,5 +1,5 @@
 const ChillBotListener = require('../../structures/ChillBotListener');
-const CommandsExecutorMaster = require('../../masters/CommandsExecutorMaster');
+const CommandsExecutorService = require('../../services/CommandsExecutorService');
 
 class MessageUpdateListener extends ChillBotListener {
     constructor() {
@@ -9,7 +9,7 @@ class MessageUpdateListener extends ChillBotListener {
     async run(client, oldMessage, newMessage) {
         if(!newMessage.guild || oldMessage.content === newMessage.content) return;
 
-        const executor = new CommandsExecutorMaster(newMessage, client);
+        const executor = new CommandsExecutorService(newMessage, client);
         executor.runCommand();
     }
 }
