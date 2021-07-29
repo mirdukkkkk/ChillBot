@@ -28,10 +28,10 @@ class CommandsExecutorMaster {
         const command = await this.findCommand(cmd);
 
         if(cooldown.has(this.message.author.id) && cooldown.get(this.message.author.id) === command?.name) return this.message.react('⏱️').catch();
-        if(command && cmd !== '') {
+        if(command) {
             if(!this.message.guild.me.permissionsIn(this.message.channel).has('SEND_MESSAGES')) return;
             if(!this.message.guild.me.permissionsIn(this.message.channel).has('EMBED_LINKS')) return this.message.reply(`У меня нет права отпрвлять встроенные сообщения! Предоставте мне это право что-бы я смог работать корректно!`);
-            //if(command.premium && this.message.member.roles.cache.has(data.premium) || !this.message.client.constants.special_access.includes(this.message.author.id)) return premiumRequired(this.message);
+            if(command.premium && !this.message.member.vip() || !this.message.client.constants.special_access.includes(this.message.author.id)) return premiumRequired(this.message);
             if(command.userPermissions.length > 0 && command.userPermissions.some((permission) => !this.message.member.permissions.has(permission))) return this.message.fail(`${this.client.settings.emojis.warning} | У вас недостаточно прав!\n${this.client.settings.emojis.info} | Необходимые права: ${command.userPermissions.map((r) => `\`${permissions[r]}\``).join(', ')}`);
             if(command.args && !args.length) return this.message.fail(`${this.client.settings.emojis.warning} | Недостаточно аргументов!\n${this.client.settings.emojis.info} | Правильное использование команды: \`${data.prefix}${cmd} ${command.usage}\``);
 
