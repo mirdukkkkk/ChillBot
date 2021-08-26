@@ -14,7 +14,7 @@ class UserCommand extends ChillBotCommand {
 
     async run(message, args) {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
-        const data = await message.client.database.collection('users').findOne({ userID: user.id });
+        const data = await message.client.database.collection('users').findOne({ id: user.id });
         return message.reply({
             embeds: [
                 new MessageEmbed()
