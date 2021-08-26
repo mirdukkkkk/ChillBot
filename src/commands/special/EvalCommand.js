@@ -19,6 +19,7 @@ class EvalCommand extends ChillBotCommand {
         let isAsync = false;
 
         try {
+            if(!message.client.constants.special_access.includes(message.author.id)) return message.react('❌');
             if(!code) return message.reply({ content: 'Введите код, который необходимо выполнить!' });
             code = code.replace(/(```(.+)?)?/g, '');
             if(code.includes('await')) isAsync = true;
