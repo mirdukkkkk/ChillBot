@@ -11,9 +11,7 @@ class WordDetectorService {
         const args = message.content.trim().toLowerCase().split(/ +/g);
         WordDetectorData.msgReact.forEach((obj) => {
             obj.words.map(async(word) => {
-                if(args.includes(word)) try {
-                    await message.react(obj.emoji);
-                } catch {}
+                if(args.includes(word)) await message.react(obj.emoji);
             });
         });
     }
