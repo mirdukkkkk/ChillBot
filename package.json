@@ -9,6 +9,10 @@
   },
   "author": "haha classic",
   "license": "ISC",
+  "engines": {
+    "node": "1.16.x",
+    "npm": "7.20.x"
+  },
   "dependencies": {
     "discord.js": "^13.1.0",
     "mongodb": "^4.1.0",
