@@ -1,5 +1,5 @@
 const { Collection, Permissions } = require('discord.js');
-const { permissions } = require('../utils/ChillBotConstants');
+const { msgReact } = require('../services/WordDetectorService')
 
 const cooldown = new Collection();
 
@@ -19,6 +19,7 @@ class CommandsExecutorService {
     async runCommand() {
         if(this.message.author.bot) return;
         const data = await this.client.database.collection('main').findOne({ name: 'guild' });
+        msgReact(this.message);
         if(!this.message.content.startsWith(data.prefix)) return;
         const [cmd, ...args] = this.message.content.slice(1).trim().split(/ +/g);
         const command = await this.findCommand(cmd);
@@ -33,9 +34,8 @@ class CommandsExecutorService {
             } catch(error) {
                 console.error(error);
             }
-
             cooldown.set(this.message.author.id, command.name);
-            setTimeout(() => cooldown.delete(this.message.author.id))
+            setTimeout(() => cooldown.delete(this.message.author.id), command.cooldown * 1000)
         }
     }
 }
