@@ -10,8 +10,8 @@
   "author": "haha classic",
   "license": "ISC",
   "engines": {
-    "node": "1.16.x",
-    "npm": "7.20.x"
+    "node": "=<1.16.6",
+    "npm": "=<7.20.3"
   },
   "dependencies": {
     "discord.js": "^13.1.0",
