@@ -12,7 +12,7 @@ class HelpCommand extends ChillBotCommand {
     }
 
     async run(message, args) {
-        const categories = { main: 'Основное', fun: 'Развлечения', moderation: 'Модерация' };
+        const categories = { main: 'Основное', fun: 'Развлечения', moderation: 'Модерация', settings: 'Настройки' };
         const data = await message.client.database.collection('main').findOne({ name: 'guild' });
 
         if(!args[0]) {
