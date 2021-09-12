@@ -2,4 +2,5 @@ node_modules/
 package-lock.json
 src/commands/moderation/ModCommand.js
 src/commands/moderation/WarnCommand.js
+src/commands/moderation/GiveawayCommand.js
 src/helpers/ModerationHelper.js
