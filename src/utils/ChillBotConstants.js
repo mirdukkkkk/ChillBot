@@ -60,8 +60,7 @@ module.exports = {
         moderation: '🛡️',
         bumper: '🚀',
         creator: '🎨',
-        creative: '💡',
-        champion: '🏆'
+        creative: '💡'
     },
     badgesArray: [
         "developer",
