@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js');
+
 module.exports = {
     dm: async (message, client) => {
         if(!message.guild && !message.author.bot) {
