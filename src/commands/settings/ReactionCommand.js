@@ -17,7 +17,7 @@ class ReactionCommand extends ChillBotCommand {
             embeds: [
                 new MessageEmbed()
                 .setTitle(`${message.client.constants.emojis.done} | Успешно`)
-                .setDescription(`🍪 | Теперь под вашими сообщениями реакции ставится ${data.reactions ?  '**не будут**' : '**будут**'}`)
+                .setDescription(`🍪 | Теперь под вашими сообщениями реакции ставиться ${data.reactions ?  '**не будут**' : '**будут**'}`)
                 .setColor(message.client.constants.colors.main)
                 .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
                 .setTimestamp()
