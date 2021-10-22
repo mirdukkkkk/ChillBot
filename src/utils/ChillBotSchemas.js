@@ -13,5 +13,11 @@ module.exports = {
             status: false,
             reason: null
         }
+    },
+    promocode: {
+        activated: {
+            status: false,
+            by: null
+        }
     }
 }

@@ -27,7 +27,7 @@ class CommandsExecutorService {
         if(command) {
             if(!this.message.guild.me.permissionsIn(this.message.channel).has(Permissions.FLAGS.SEND_MESSAGES)) return;
             if(!this.message.guild.me.permissionsIn(this.message.channel).has(Permissions.FLAGS.EMBED_LINKS)) return this.message.reply(`У меня нет права отпрвлять встроенные сообщения! Предоставте мне это право что-бы я смог работать корректно!`);
-            if(command.userPerms.length > 0 && command.userPerms.some((permission) => !this.message.member.permissions.has(permission))) return;
+            if(command.userPerms.length > 0 && command.userPerms.some((permission) => !this.message.member.permissions.has(Permissions.FLAGS[permission]))) return this.client.embconstructor.fail(`${this.client.constants.emojis.warning} | Неддостаточно прав для использования данной команды!\n${this.client.constants.emojis.info} | Необходимые права: ${command.userPerms.map((r) => `\`${this.client.constants.permissions[r]}\``).join(', ')}`, this.message);
 
             try {
                 command.run(this.message, args);
