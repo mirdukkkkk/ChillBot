@@ -7,13 +7,13 @@ class AcceptCommand extends ChillBotCommand {
             description: 'С помощью этой команды вы можете принять предложение.',
             category: 'moderation',
             usage: '<id> [комментарий]',
-            userPermissions: ['MANAGE_GUILD'],
+            userPerms: ['MANAGE_GUILD'],
             cooldown: 3
         });
     }
 
     async run(message, args) {
-        if(args.join(' ').length === 0) message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Пожалуйста, введите ID предложения!`, message);
+        if(args.join(' ').length == 0) message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Пожалуйста, введите ID предложения!`, message);
         const data = await message.client.database.collection('main').findOne({ name: 'guild' });
         if(!data.ideaChannel || !message.guild.channels.cache.has(data?.ideaChannel)) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | На данном сервере не установлен канал предложений!`, message);
         if(data.ideas.length <= 0) return message.message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | На сервере ещё не подавались предложения`, message);
