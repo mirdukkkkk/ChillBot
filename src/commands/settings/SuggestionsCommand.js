@@ -7,7 +7,7 @@ class SuggestionsCommand extends ChillBotCommand {
             description: 'Настройки системы предложений',
             category: 'settings',
             usage: '<channel/blacklist>',
-            userPermissions: ['MANAGE_GUILD']
+            userPerms: ['MANAGE_GUILD']
         });
     }
 
@@ -59,14 +59,16 @@ class SuggestionsCommand extends ChillBotCommand {
                 const user = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
                 if(!user) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Укажите пожалуйста пользователя, которого вы хотите занести/вынести из чёрного списка.`, message);
                 if(user.permissions.has('MANAGE_GUILD') || user.roles.highest.position >= message.member.roles.highest.position) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Вы не можете внести данного пользователя в чёрный список`, message);
-                message.reply(
-                    new MessageEmbed()
-                    .setTitle(`${message.client.constants.emojis.done} | Успешно`)
-                    .setColor('A5FF2A')
-                    .setDescription(`👤 | Администратор: ${message.author.tag}\n📝 | ${!data.ideaBlacklist?.includes(user.id) ? 'Внёс в ЧС' : 'Вынес из ЧС'}: ${user.user.tag} (${user.id})`)
-                    .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
-                    .setTimestamp()
-                );
+                message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                        .setTitle(`${message.client.constants.emojis.done} | Успешно`)
+                        .setColor('A5FF2A')
+                        .setDescription(`👤 | Администратор: ${message.author.tag}\n📝 | ${!data.ideaBlacklist?.includes(user.id) ? 'Внёс в ЧС' : 'Вынес из ЧС'}: ${user.user.tag} (${user.id})`)
+                        .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
+                        .setTimestamp()
+                    ]
+                });
                 message.client.database.collection('main').updateOne({ name: 'guild' }, {
                     [data.ideaBlacklist?.includes(user.id) ? '$pull' : '$push']: {
                         ideaBlacklist: user.id
