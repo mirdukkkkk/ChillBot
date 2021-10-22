@@ -9,7 +9,7 @@ class EvalCommand extends ChillBotCommand {
             category: 'special',
             usage: '<код>',
             public: false,
-            cooldown: 0
+            cooldown: 1
         });
     }
 
