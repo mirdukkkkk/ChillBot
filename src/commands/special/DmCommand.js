@@ -13,6 +13,7 @@ class DmCommand extends ChillBotCommand {
     }
 
     async run(message, args) {
+        if(!message.client.constants.special_access.includes(message.author.id)) return message.react('❌');
         const option = args[0];
         switch(option) {
             case 'send': {
