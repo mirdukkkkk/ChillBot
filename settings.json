@@ -1,4 +1,4 @@
 {
     "token": "ODEyNzY3ODg2NTQ3MzUzNjEy.YDFjFA.uhSsoTlGiT10hfiCcYJ42norcs0",
-    "db": "mongodb+srv://haha-classic:12kate04@chillbotdatabase.ewibq.mongodb.net/Main?retryWrites=true&w=majority"
+    "db": "mongodb+srv://haha-classic:12kate04@chillbotdatabase.ewibq.mongodb.net/?retryWrites=true&w=majority"
 }
