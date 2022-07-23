@@ -2,7 +2,7 @@ const { WebhookClient } = require('discord.js');
 
 module.exports = {
     webhooks: {
-        dm: new WebhookClient({ url: 'https://discord.com/api/webhooks/848247855281340426/A3t8Tm9xHzAXaSzh1FGoLfaj7WUJIzbLVvW8TvXdgNlmJ2XXacnmzKJut5SLDsbV6vvU' })
+        dm: new WebhookClient({ token: 'A3t8Tm9xHzAXaSzh1FGoLfaj7WUJIzbLVvW8TvXdgNlmJ2XXacnmzKJut5SLDsbV6vvU', id: '848247855281340426' })
     },
     special_access: [
         "663378999103324180",
@@ -60,7 +60,8 @@ module.exports = {
         moderation: '🛡️',
         bumper: '🚀',
         creator: '🎨',
-        creative: '💡'
+        creative: '💡',
+        champion: '🏆'
     },
     badgesArray: [
         "developer",

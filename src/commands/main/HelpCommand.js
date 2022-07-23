@@ -12,7 +12,7 @@ class HelpCommand extends ChillBotCommand {
     }
 
     async run(message, args) {
-        const categories = { main: 'Основное', fun: 'Развлечения', moderation: 'Модерация', settings: 'Настройки' };
+        const categories = { main: 'Основное', fun: 'Развлечения', moderation: 'Модерация', settings: 'Настройки', utils: 'Утилиты' };
         const data = await message.client.database.collection('main').findOne({ name: 'guild' });
 
         if(!args[0]) {
@@ -31,7 +31,7 @@ class HelpCommand extends ChillBotCommand {
             return message.reply({ embeds: [embed] });
         }
 
-        const command = message.client.commands.get(args[0]);
+        const command = message.client.commands.get(args[0]) || message.client.commands.find((c) => c?.aliases.includes(args[0]));
         if(!command || command.category === 'special') return message.client.embconstructor.fail(`${message.client.constants.emojis.info} | Указанная вами команда не была найдена!`, message);
 
         return message.reply({
