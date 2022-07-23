@@ -1,4 +1,3 @@
-const { MessageEmbed } = require('discord.js');
 const ChillBotListener = require('../structures/ChillBotListener');
 
 class ReadyListener extends ChillBotListener {

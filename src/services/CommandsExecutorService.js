@@ -1,4 +1,4 @@
-const { Collection, PermissionsBitField } = require('discord.js');
+const { Collection } = require('discord.js');
 const { msgReact } = require('../services/WordDetectorService')
 
 const cooldown = new Collection();
@@ -18,6 +18,7 @@ class CommandsExecutorService {
 
     async runCommand() {
         if(this.message.author.bot) return;
+        if(!this.message.guild) return;
         const data = await this.client.database.collection('main').findOne({ name: 'guild' });
         msgReact(this.message);
         if(!this.message.content.startsWith(data.prefix)) return;
