@@ -1,5 +1,5 @@
 const ChillBotCommand = require('../../structures/ChillBotCommand');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 class UserCommand extends ChillBotCommand {
     constructor() {
@@ -17,11 +17,11 @@ class UserCommand extends ChillBotCommand {
         const data = await message.client.database.collection('users').findOne({ id: user.id });
         return message.reply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                 .setTitle('👤 | Профиль пользователя')
                 .setColor(message.client.constants.colors.main)
                 .setDescription(`📎 | Тег пользователя: \`${user.user.tag}\`\n🖇️ | Никнейм на сервере: \`${user.nickname || 'Не установлен'}\`\n🆔 | ID пользователя: \`${user.id}\`\n🕐 | Был(-а) зарегистрирован(-а): \`${message.client.functions.getDays(new Date(user.user.createdTimestamp))} дней назад\`\n🗓️ | Дата регистрации: \`${new Date(user.user.createdAt).toISOString().replace('T', ' ').substr(0, 19)}\`\n🔌 | Присоединил(-лся/-ась) к серверу: \`${new Date(user.joinedTimestamp).toISOString().replace('T', ' ').substr(0, 19)}\`\n🏅 | Значки: ${!data ? '`Отсуствуют`' : data.badges.map((b) => message.client.constants.badges[b]).join(' / ') || '`Отсуствуют`'}`)
-                .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
+                .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
                 .setTimestamp()
             ]
         });

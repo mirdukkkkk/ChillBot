@@ -1,5 +1,5 @@
 const WordDetectorData = require('../utils/WordDetectorData');
-const { Permissions } = require('discord.js')
+const { PermissionsBitField } = require('discord.js')
 
 class WordDetectorService {
     constructor() {
@@ -7,7 +7,7 @@ class WordDetectorService {
     }
 
     static async msgReact(message) {
-        if(!message.guild.me.permissionsIn(message.channel).has(Permissions.FLAGS.ADD_REACTIONS)) return;
+        if(!message.guild.members.me.permissionsIn(message.channel).has(PermissionsBitField.Flags.AddReactions)) return;
         if(message.channel.id === "738534600174862389") return;
         const data = await message.client.database.collection('users').findOne({ id: message.author.id });
         if(!data.reactions) return;

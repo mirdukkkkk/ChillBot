@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const ChillBotCommand = require('../../structures/ChillBotCommand');
 
 class SuggestionsCommand extends ChillBotCommand {
@@ -22,11 +22,11 @@ class SuggestionsCommand extends ChillBotCommand {
                 if(!channel) {
                     message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                             .setTitle(`${message.client.constants.emojis.done} | Успешно`)
                             .setColor('A5FF2A')
                             .setDescription(`👤 | Администратор: \`${message.author.tag}\`\n📝 | Сбросил канал идей`)
-                            .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
+                            .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
                             .setTimestamp()
                         ]
                     });
@@ -40,11 +40,11 @@ class SuggestionsCommand extends ChillBotCommand {
                 if(!message.guild.channels.cache.has(channel?.id)) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Указанного вами канала не существует на данном сервере.`, message);
                 message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                         .setTitle(`${message.client.constants.emojis.done} | Успешно`)
                         .setColor('A5FF2A')
                         .setDescription(`👤 | Администратор: \`${message.author.tag}\`\n📝 | Сменил канал идей на: <#${channel.id}>`)
-                        .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
+                        .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
                         .setTimestamp()
                     ]
                 });
@@ -61,11 +61,11 @@ class SuggestionsCommand extends ChillBotCommand {
                 if(user.permissions.has('MANAGE_GUILD') || user.roles.highest.position >= message.member.roles.highest.position) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Вы не можете внести данного пользователя в чёрный список`, message);
                 message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                         .setTitle(`${message.client.constants.emojis.done} | Успешно`)
                         .setColor('A5FF2A')
                         .setDescription(`👤 | Администратор: ${message.author.tag}\n📝 | ${!data.ideaBlacklist?.includes(user.id) ? 'Внёс в ЧС' : 'Вынес из ЧС'}: ${user.user.tag} (${user.id})`)
-                        .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
+                        .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
                         .setTimestamp()
                     ]
                 });

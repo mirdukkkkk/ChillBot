@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { emojis, colors } = require('./ChillBotConstants');
 const { failMessage } = require('./ChillBotErrors');
 
@@ -15,11 +15,11 @@ class ChillBotEmbedConstructor {
     fail(content, message) {
         if(!content) throw new RangeError('Содержания сообщения об ошибке не было укзано!');
         const interactive = failMessage[Math.floor(Math.random() * failMessage.length)];
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
         .setTitle(`${emojis.failure} | Ошибка`)
         .setDescription(content)
         .setColor(colors.error)
-        .setFooter(`${interactive.content} | ${interactive.author}`)
+        .setFooter({ text: `${interactive.content} | ${interactive.author}` })
         .setTimestamp();
 
         if(!message) return embed;
