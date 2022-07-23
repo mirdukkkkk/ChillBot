@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const ChillBotCommand = require('../../structures/ChillBotCommand');
 
 class BallCommand extends ChillBotCommand {
@@ -20,14 +20,14 @@ class BallCommand extends ChillBotCommand {
         return message.reply(
             {
                 embeds: [
-                    new MessageEmbed()
+                    new EmbedBuilder()
                     .setTitle('🎱 | 8ball')
                     .addFields(
                         { name: 'Вопрос', value: args.join(' '), inline: true },
                         { name: 'Ответ', value: answers[Math.floor(Math.random() * answers.length)], inline: true }
                     )
                     .setColor(message.client.constants.colors.main)
-                    .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
+                    .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
                     .setTimestamp()
                 ]
             }
