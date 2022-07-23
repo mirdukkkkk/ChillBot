@@ -48,7 +48,7 @@ class DenyCommand extends ChillBotCommand {
                 ]
             });
             message.react('848208108215468033');
-            return message.reply({ embeds: [new MessageEmbed().setTitle(`${message.client.constants.emojis.done} | Успешно`).setDescription(`${message.client.constants.emojis.info} | Вы отклонили предложение с ID: **${id}**\n🔨 | По причине: ${args.slice(1).join(' ').length ? args.slice(1).join(' ').slice(0, 999) : 'Без причины'}`).setColor(message.client.constants.colors.main).setFooter(`Отказал администратор ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true })).setTimestamp()] });
+            return message.reply({ embeds: [new EmbedBuilder().setTitle(`${message.client.constants.emojis.done} | Успешно`).setDescription(`${message.client.constants.emojis.info} | Вы отклонили предложение с ID: **${id}**\n🔨 | По причине: ${args.slice(1).join(' ').length ? args.slice(1).join(' ').slice(0, 999) : 'Без причины'}`).setColor(message.client.constants.colors.main).setFooter({ text: `Отказал администратор ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setTimestamp()] });
         } catch(err) {
             message.reply(err.toString());
         }
