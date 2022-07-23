@@ -10,7 +10,7 @@
   "author": "haha classic",
   "license": "ISC",
   "engines": {
-    "node": "17.0.1"
+    "node": ">=16.6.0"
   },
   "dependencies": {
     "crypto": "^1.0.1",
