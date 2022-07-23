@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const ChillBotCommand = require('../../structures/ChillBotCommand');
 
 class DenyCommand extends ChillBotCommand {
@@ -13,9 +13,9 @@ class DenyCommand extends ChillBotCommand {
     }
 
     async run(message, args) {
-        if(args.join(' ').length == 0) message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Пожалуйста, введите ID предложения!`, message);
         const data = await message.client.database.collection('main').findOne({ name: 'guild' });
         if(!data.ideaChannel || !message.guild.channels.cache.has(data?.ideaChannel)) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | На данном сервере не установлен канал предложений!`, message);
+        if(args.join(' ').length == 0) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Пожалуйста, введите ID предложения!`, message);
         if(data.ideas.length <= 0) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | На сервере ещё не подавались предложения`, message);
 
         const id = args[0];
@@ -31,19 +31,19 @@ class DenyCommand extends ChillBotCommand {
 
             msg.edit({
                 embeds: [
-                    new MessageEmbed()
+                    new EmbedBuilder()
                     .setTitle(`Предложение №${id} (Отклонено)`)
                     .setDescription(msg.embeds[0].description)
                     .setColor('ff3333')
-                    .addFields(
+                    .addFields([
                         msg.embeds[0].fields[0],
                         {
                             name: `${message.client.constants.emojis.failure} Ответ от ${message.author.tag} [${new Date().toLocaleString('ru')}]:`,
                             value: args.slice(1).join(' ').length ? args.slice(1).join(' ').slice(0, 999) : 'Администратор не оставил дополнительного комментария.',
                             inline: true
                         }
-                    )
-                    .setFooter(msg.embeds[0].footer.text, msg.embeds[0].footer?.iconURL)
+                    ])
+                    .setFooter({ text: msg.embeds[0].footer.text, iconURL: msg.embeds[0].footer?.iconURL })
                     .setTimestamp()
                 ]
             });

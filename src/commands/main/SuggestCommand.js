@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const ChillBotCommand = require('../../structures/ChillBotCommand');
 
 class SuggestCommand extends ChillBotCommand {
@@ -19,7 +19,7 @@ class SuggestCommand extends ChillBotCommand {
         if(data.ideaBlacklist?.includes(message.author.id)) return message.client.embconstructor.fail(`${message.client.constants.emojis.info} | Вы не можете использовать данную команду, так как находитесь в черном списке предложений. Если это произошло случайно, обратитесь к администрации.`, message);
 
         const id = (data.ideas?.length ?? 0) + 1;
-        const embed = new MessageEmbed().setTitle(`Предложение №${id}`).setColor(message.client.constants.colors.main).setDescription(args.join(' ')).addField(`Дополнительные сведения:`, `Автор: **${message.author.tag}** (${message.author.id})\nДата отправки: **${new Date().toLocaleString('ru')}**`).setFooter(message.guild.name, message.guild.iconURL({ dynamic: true })).setTimestamp().toJSON();
+        const embed = new EmbedBuilder().setTitle(`Предложение №${id}`).setColor(message.client.constants.colors.main).setDescription(args.join(' ')).addFields([ { name: `Дополнительные сведения:`, value: `Автор: **${message.author.tag}** (${message.author.id})\nДата отправки: **${new Date().toLocaleString('ru')}**` } ]).setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) }).setTimestamp().toJSON();
         const m = await message.guild.channels.cache.get(data.ideaChannel).send({
             embeds: [
                 embed
