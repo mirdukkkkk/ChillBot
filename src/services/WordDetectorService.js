@@ -1,4 +1,5 @@
 const WordDetectorData = require('../utils/WordDetectorData');
+const { Permissions } = require('discord.js')
 
 class WordDetectorService {
     constructor() {
@@ -6,6 +7,7 @@ class WordDetectorService {
     }
 
     static async msgReact(message) {
+        if(!message.guild.me.permissionsIn(message.channel).has(Permissions.FLAGS.ADD_REACTIONS)) return;
         if(message.channel.id === "738534600174862389") return;
         const data = await message.client.database.collection('users').findOne({ id: message.author.id });
         if(!data.reactions) return;
