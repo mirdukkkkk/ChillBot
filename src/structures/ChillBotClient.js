@@ -16,7 +16,7 @@ class ChillBotClient extends Client {
     }
 
     get database() {
-        return this.mongo.db('stable');
+        return this.mongo.db('beta');
     }
 
     async _start() {
