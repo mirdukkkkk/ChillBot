@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const ChillBotCommand = require('../../structures/ChillBotCommand');
 
 class ServerCommand extends ChillBotCommand {
@@ -14,12 +14,12 @@ class ServerCommand extends ChillBotCommand {
     async run(message, args) {
         return message.reply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                 .setTitle(`${message.client.constants.emojis.info} | Информация о сервере`)
                 .setColor(message.client.constants.colors.main)
-                .setDescription(`✏️ | Название сервера: \`${message.guild.name}\`\n🗓️ | Дата создания: \`${new Date(message.guild.createdAt).toISOString().replace('T', ' ').substr(0, 19)}\`\n🕐 | Сервер создан: \`${message.client.functions.getDays(new Date(message.guild.createdTimestamp))} дней назад\`\n👑 | Владелец сервера: \`${message.guild.members.cache.get(message.guild.ownerId).user.tag} | ${message.guild.ownerId}\`\n👥 | Всего участников: \`${message.guild.memberCount}\`\n👤 | Всего людей: \`${message.guild.members.cache.filter(i => i.user.bot === false).size}\`\n🗂️ | Количество ролей: \`${message.guild.roles.cache.size}\`\n🖇️ | Количество каналов: \`${message.guild.channels.cache.size}\``)
+                .setDescription(`✏️ | Название сервера: \`${message.guild.name}\`\n🗓️ | Дата создания: \`${new Date(message.guild.createdAt).toISOString().replace('T', ' ').substring(0, 19)}\`\n🕐 | Сервер создан: \`${message.client.functions.getDays(new Date(message.guild.createdTimestamp))} дней назад\`\n👑 | Владелец сервера: \`${message.guild.members.cache.get(message.guild.ownerId).user.tag} | ${message.guild.ownerId}\`\n👥 | Всего участников: \`${message.guild.memberCount}\`\n👤 | Всего людей: \`${message.guild.members.cache.filter(i => i.user.bot === false).size}\`\n🗂️ | Количество ролей: \`${message.guild.roles.cache.size}\`\n🖇️ | Количество каналов: \`${message.guild.channels.cache.size}\``)
                 .setThumbnail(message.guild.iconURL({ dynamic: true }))
-                .setFooter(`ChillBot by ${message.guild.members.cache.get('663378999103324180').user.username}`, message.client.user.displayAvatarURL({ format: 'png' }))
+                .setFooter({ text: `ChillBot by ${message.guild.members.cache.get('663378999103324180').user.username}`, iconURL: message.client.user.displayAvatarURL({ format: 'png' }) })
                 .setTimestamp()
             ]
         });

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const ChillBotCommand = require('../../structures/ChillBotCommand');
 
 class BotCommand extends ChillBotCommand {
@@ -23,12 +23,12 @@ class BotCommand extends ChillBotCommand {
                 message.reply(
                     {
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                             .setTitle(`${message.client.constants.emojis.bot} | Управление ботом`)
                             .setColor(message.client.constants.colors.main)
                             .setDescription(`${message.client.constants.emojis.info} | Статус бота сменён на \`${args.slice(1).join(' ')}\``)
                             .setThumbnail(message.client.user.displayAvatarURL({ format: 'png', size: 2048 }))
-                            .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
+                            .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
                             .setTimestamp()
                         ]
                     }

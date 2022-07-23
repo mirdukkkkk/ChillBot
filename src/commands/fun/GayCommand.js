@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const ChillBotComamnd = require('../../structures/ChillBotCommand');
 
 class GayCommand extends ChillBotComamnd {
@@ -15,11 +15,11 @@ class GayCommand extends ChillBotComamnd {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
         return message.reply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                 .setTitle('🏳️‍🌈 | Гей')
                 .setColor(message.client.constants.colors.main)
                 .setDescription(`➡️ | ${user.nickname || user.user.username} гей с вероятностью ${Math.floor(Math.random() * (100 - 0 + 1)) + 0}%`)
-                .setFooter(message.guild.name, message.guild.iconURL({ dynamic: true }))
+                .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
                 .setTimestamp()
             ]
         });

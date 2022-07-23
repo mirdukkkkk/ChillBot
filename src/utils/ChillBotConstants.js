@@ -1,4 +1,4 @@
-const { WebhookClient } = require('discord.js');
+const { WebhookClient, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     webhooks: {
@@ -103,5 +103,37 @@ module.exports = {
         MANAGE_ROLES: 'Управлять ролями',
         MANAGE_WEBHOOKS: 'Управлять вебхуками',
         MANAGE_EMOJIS: 'Управлять эмодзи',
+        FLAGS: {
+            ADMINISTRATOR: PermissionFlagsBits.Administrator,
+            VIEW_AUDIT_LOG: PermissionFlagsBits.ViewAuditLog,
+            CREATE_INSTANT_INVITE: PermissionFlagsBits.CreateInstantInvite,
+            KICK_MEMBERS: PermissionFlagsBits.KickMembers,
+            BAN_MEMBERS: PermissionFlagsBits.BanMembers,
+            MANAGE_CHANNELS: PermissionFlagsBits.ManageChannels,
+            MANAGE_GUILD: PermissionFlagsBits.ManageGuild,
+            ADD_REACTIONS: PermissionFlagsBits.AddReactions,
+            PRIORITY_SPEAKER: PermissionFlagsBits.PrioritySpeaker,
+            STREAM: PermissionFlagsBits.Stream,
+            VIEW_CHANNEL: PermissionFlagsBits.ViewChannel,
+            SEND_MESSAGES: PermissionFlagsBits.SendMessages,
+            SEND_TTS_MESSAGES: PermissionFlagsBits.SendTTSMessages,
+            MANAGE_MESSAGES: PermissionFlagsBits.ManageThreads,
+            EMBED_LINKS: PermissionFlagsBits.EmbedLinks,
+            ATTACH_FILES: PermissionFlagsBits.AttachFiles,
+            READ_MESSAGE_HISTORY: PermissionFlagsBits.ReadMessageHistory,
+            MENTION_EVERYONE: PermissionFlagsBits.MentionEveryone,
+            USE_EXTERNAL_EMOJIS: PermissionFlagsBits.UseExternalEmojis,
+            VIEW_GUILD_INSIGHTS: PermissionFlagsBits.ViewGuildInsights,
+            CONNECT: PermissionFlagsBits.Connect,
+            SPEAK: PermissionFlagsBits.Speak,
+            MUTE_MEMBERS: PermissionFlagsBits.MuteMembers,
+            DEAFEN_MEMBERS: PermissionFlagsBits.DeafenMembers,
+            MOVE_MEMBERS: PermissionFlagsBits.MoveMembers,
+            CHANGE_NICKNAME: PermissionFlagsBits.ChangeNickname,
+            MANAGE_NICKNAMES: PermissionFlagsBits.ManageNicknames,
+            MANAGE_ROLES: PermissionFlagsBits.ManageRoles,
+            MANAGE_WEBHOOKS: PermissionFlagsBits.ManageWebhooks,
+            MANAGE_EMOJIS: PermissionFlagsBits.ManageRoles,
+        }
     }
 }
