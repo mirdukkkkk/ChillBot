@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 const ChillBotCommand = require('../../structures/ChillBotCommand');
 
 class SuggestionsCommand extends ChillBotCommand {
@@ -58,7 +58,7 @@ class SuggestionsCommand extends ChillBotCommand {
             case 'blacklist': {
                 const user = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
                 if(!user) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Укажите пожалуйста пользователя, которого вы хотите занести/вынести из чёрного списка.`, message);
-                if(user.permissions.has('MANAGE_GUILD') || user.roles.highest.position >= message.member.roles.highest.position) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Вы не можете внести данного пользователя в чёрный список`, message);
+                if(user.permissions.has(PermissionFlagsBits.ManageGuild) || user.roles.highest.position >= message.member.roles.highest.position) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Вы не можете внести данного пользователя в чёрный список`, message);
                 message.reply({
                     embeds: [
                         new EmbedBuilder()
