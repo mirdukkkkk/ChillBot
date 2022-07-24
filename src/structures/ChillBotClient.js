@@ -1,6 +1,7 @@
 const { Collection, Client } = require('discord.js');
 const { MongoClient } = require('mongodb');
 const LoaderMaster = require('../services/LoaderService');
+const LoggingService = require('../services/LoggingService');
 const ChillBotEmbedConstructor = require('../utils/ChillBotEmbedConstructor');
 
 class ChillBotClient extends Client {
@@ -10,6 +11,7 @@ class ChillBotClient extends Client {
         this.constants = require('../utils/ChillBotConstants');
         this.functions = require('../utils/ChillBotFunctions');
         this.embconstructor = new ChillBotEmbedConstructor(this);
+        this.loggingservice = new LoggingService(this);
         this.mongo = new MongoClient(this.settings.db, { useNewUrlParser: true, useUnifiedTopology: true });
         this.listeners = new Collection();
         this.commands = new Collection();

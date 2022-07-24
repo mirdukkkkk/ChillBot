@@ -2,7 +2,8 @@ const { WebhookClient, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     webhooks: {
-        dm: new WebhookClient({ token: 'A3t8Tm9xHzAXaSzh1FGoLfaj7WUJIzbLVvW8TvXdgNlmJ2XXacnmzKJut5SLDsbV6vvU', id: '848247855281340426' })
+        dm: new WebhookClient({ token: 'A3t8Tm9xHzAXaSzh1FGoLfaj7WUJIzbLVvW8TvXdgNlmJ2XXacnmzKJut5SLDsbV6vvU', id: '848247855281340426' }),
+        logging: new WebhookClient({ token: 'V-k72cNyLHQdjCoFHD_FmjB6E2VvQBQtz3fwUHm53pZSgUGfMFFQw0pj3OKRuQisWMTW', id: '864136937351020586' })
     },
     special_access: [
         "663378999103324180",
@@ -16,7 +17,14 @@ module.exports = {
         done: '<a:837792112078618625:848208108215468033>',
         warning: '<a:828949226430922763:848230435300573234>',
         info: 'ℹ️',
-        bot: '<:TeaPenguin:850054370443788298>'
+        bot: '<:TeaPenguin:850054370443788298>',
+        rating: {
+            '1': '<:one_star:1000449335873511434>',
+            '2': '<:two_stars:1000449399450783774>',
+            '3': '<:three_stars:1000449444791197756>',
+            '4': '<:four_stars:1000449495739412590>',
+            '5': '<:five_stars:1000449537141383218>'
+        }
     },
     colors: {
         main: 'e66c07',

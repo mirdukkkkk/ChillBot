@@ -1,5 +1,6 @@
 const WordDetectorData = require('../utils/WordDetectorData');
-const { PermissionsBitField } = require('discord.js')
+const { PermissionFlagsBits } = require('discord.js')
+const wait = require('util').promisify(setTimeout);
 
 class WordDetectorService {
     constructor() {
@@ -7,14 +8,17 @@ class WordDetectorService {
     }
 
     static async msgReact(message) {
-        if(!message.guild.members.me.permissionsIn(message.channel).has(PermissionsBitField.Flags.AddReactions)) return;
+        if(!message.guild.members.me.permissionsIn(message.channel).has(PermissionFlagsBits.AddReactions)) return;
         if(message.channel.id === "738534600174862389") return;
         const data = await message.client.database.collection('users').findOne({ id: message.author.id });
         if(!data.reactions) return;
         const args = message.content.trim().toLowerCase().split(/ +/g);
         WordDetectorData.msgReact.forEach((obj) => {
-            obj.words.map(async(word) => {
-                if(args.includes(word)) await message.react(obj.emoji);
+            obj.words.forEach(async(word) => {
+                if(args.includes(word)) {
+                    await message.react(obj.emoji);
+                    await wait(1000);
+                }
             });
         });
     }

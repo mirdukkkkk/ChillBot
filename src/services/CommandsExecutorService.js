@@ -1,4 +1,4 @@
-const { Collection } = require('discord.js');
+const { Collection, PermissionFlagsBits } = require('discord.js');
 const { msgReact } = require('../services/WordDetectorService')
 
 const cooldown = new Collection();
@@ -26,8 +26,8 @@ class CommandsExecutorService {
         const command = await this.findCommand(cmd);
         if(cooldown.has(this.message.author.id) && cooldown.get(this.message.author.id) === command.name) return this.message.react('⏱️').catch();
         if(command) {
-            if(!this.message.guild.members.me.permissionsIn(this.message.channel).has(PermissionsBitField.Flags.SendMessages)) return;
-            if(!this.message.guild.members.me.permissionsIn(this.message.channel).has(PermissionsBitField.Flags.EmbedLinks)) return this.message.reply(`У меня нет права отпрвлять встроенные сообщения! Предоставте мне это право что-бы я смог работать корректно!`);
+            if(!this.message.guild.members.me.permissionsIn(this.message.channel).has(PermissionFlagsBits.SendMessages)) return;
+            if(!this.message.guild.members.me.permissionsIn(this.message.channel).has(PermissionFlagsBits.EmbedLinks)) return this.message.reply(`У меня нет права отпрвлять встроенные сообщения! Предоставте мне это право что-бы я смог работать корректно!`);
             if(command.userPerms.length > 0 && command.userPerms.some((permission) => !this.message.member.permissions.has(this.client.constants.permissions.FLAGS[permission]))) return this.client.embconstructor.fail(`${this.client.constants.emojis.warning} | Неддостаточно прав для использования данной команды!\n${this.client.constants.emojis.info} | Необходимые права: ${command.userPerms.map((r) => `\`${this.client.constants.permissions[r]}\``).join(', ')}`, this.message);
 
             try {
