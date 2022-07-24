@@ -24,10 +24,10 @@ class EvalCommand extends ChillBotCommand {
             code = code.replace(/(```(.+)?)?/g, '');
             if(code.includes('await')) isAsync = true;
             if(isAsync) code = `(async () => {${code}})()`;
-            const before = process.hrtime.bigint();
+            //const before = process.hrtime.bigint();
             let executed = eval(code);
             if(util.types.isPromise(executed)) executed = await executed;
-            const after = process.hrtime.bigint();
+            //const after = process.hrtime.bigint();
             if(typeof executed !== 'string') executed = util.inspect(executed, { depth: 0, maxArrayLength: null });
             if(executed.length >= 1940) {
                 message.reply({ content: 'Результат оказался слишком большим, поэтому я отправил его тебе в личку.' });

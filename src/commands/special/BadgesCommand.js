@@ -30,7 +30,7 @@ class BadgesCommand extends ChillBotCommand {
             });
             message.react(message.client.constants.emojis.done);
         } catch(error) {
-            message.reply(`Произошла неизвестная ошибка. Свяжитесь с разработчиком для дополнительной информации!\n${error}`);
+            return message.client.loggingservice.error(error, message);
         }
     }
 }

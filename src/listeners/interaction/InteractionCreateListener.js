@@ -34,10 +34,11 @@ class InteractionCreateListener extends ChillBotListener {
                 .setDescription(message.embeds[0].description)
                 .setFields([
                     message.embeds[0].fields[0],
-                    { name: message.embeds[0].fields[1].name, value: `${client.constants.emojis.rating[String(Math.round(averageStar))]} ${averageStar} (оценок: ${idea.rating.length + 1})` }
+                    message.embeds[0].fields[1],
+                    { name: message.embeds[0].fields[2].name, value: `${client.constants.emojis.rating[String(Math.round(averageStar))]} ${averageStar} (оценок: ${idea.rating.length + 1})` }
                 ])
                 .setFooter({ text: message.embeds[0].footer.text, iconURL: message.embeds[0].footer?.iconURL })
-                .setColor(client.constants.colors.main)
+                .setColor(message.embeds[0].color)
                 .setTimestamp()
             ]
         });

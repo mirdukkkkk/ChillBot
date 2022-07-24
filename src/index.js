@@ -9,3 +9,7 @@ const client = new ChillBotClient({
 });
 
 client._start().catch(console.error);
+
+process.on('uncaughtException', async(error) => {
+    console.error(error)
+});

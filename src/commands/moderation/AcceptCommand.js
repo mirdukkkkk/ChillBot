@@ -16,12 +16,12 @@ class AcceptCommand extends ChillBotCommand {
         const data = await message.client.database.collection('main').findOne({ name: 'guild' });
         if(!data.ideaChannel || !message.guild.channels.cache.has(data?.ideaChannel)) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | На данном сервере не установлен канал предложений!`, message);
         if(args.join(' ').length == 0) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Пожалуйста, введите ID предложения!`, message);
-        if(data.ideas.length <= 0) return message.message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | На сервере ещё не подавались предложения`, message);
+        if((await message.client.database.collection('ideas').countDocuments()) <= 0) return message.message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | На сервере ещё не подавались предложения`, message);
 
         const id = args[0];
         if(isNaN(id) || !parseInt(id) || id <= 0) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Укажите пожалуйста **верный** ID предложения.`);
         const channel = message.guild.channels.cache.get(data.ideaChannel);
-        const suggestion = data.ideas.find((i) => i.id === parseInt(id));
+        const suggestion = await message.client.database.collection('ideas').findOne({ id: parseInt(id) });
         if(!suggestion) return message.client.embconstructor.fail(`${message.client.constants.emojis.warning} | Предложения с указанным вами ID не существует.`, message);
 
         try {
@@ -42,7 +42,8 @@ class AcceptCommand extends ChillBotCommand {
                                 name: `${message.client.constants.emojis.done} Ответ от ${message.author.tag} [${new Date().toLocaleString('ru')}]:`,
                                 value: args.slice(1).join(' ').length ? args.slice(1).join(' ').slice(0, 999) : 'Администратор не оставил дополнительного комментария.',
                                 inline: true
-                            }
+                            },
+                            msg.embeds[0].fields[2],
                         ])
                         .setFooter({ text: msg.embeds[0].footer.text, iconURL: msg.embeds[0].footer?.iconURL })
                         .setTimestamp()
@@ -50,9 +51,9 @@ class AcceptCommand extends ChillBotCommand {
                 }
             );
             message.react('848208108215468033');
-            return message.reply({ embeds: [new EmbedBuilder().setTitle(`${message.client.constants.emojis.done} | Успешно`).setDescription(`${message.client.constants.emojis.info} | Вы приняли предложение с ID: **${id}**\n🔨 | По причине: ${args.slice(1).join(' ').length ? args.slice(1).join(' ').slice(0, 999) : 'Без причины'}`).setColor(message.client.constants.colors.main).setFooter({ text: `Принял администратор ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setTimestamp()] });
+            return message.reply({ embeds: [new EmbedBuilder().setTitle(`${message.client.constants.emojis.done} | Успешно`).setDescription(`${message.client.constants.emojis.info} | Вы приняли предложение с ID: **${id}**\n🔨 | По причине: ${args.slice(1).join(' ').length ? args.slice(1).join(' ').slice(0, 999) : '-'}`).setColor(message.client.constants.colors.main).setFooter({ text: `Принял администратор ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setTimestamp()] });
         } catch(err) {
-            message.reply(err.toString());
+            return message.client.loggingservice.error(error, message);
         }
     }
 }
