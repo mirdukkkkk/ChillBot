@@ -65,7 +65,8 @@ class SuggestCommand extends ChillBotCommand {
             message.client.database.collection('ideas').updateOne({ id }, {
                 $set: {
                     rating: [],
-                    message: m.id
+                    message: m.id,
+                    author: message.author.id
                 }
             }, { upsert: true });
         } catch(error) {

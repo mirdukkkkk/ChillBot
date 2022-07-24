@@ -20,7 +20,8 @@ class InteractionCreateListener extends ChillBotListener {
         if(!interaction.isSelectMenu()) return;
         const idea = await client.database.collection('ideas').findOne({ message: interaction.message.id });
         if(!idea) return;
-        if(idea.rating.find(rate => rate.user === interaction.user.id)) return interaction.reply({ content: `Вы уже поставили оценку **${idea.rating.find(rate => rate.user === interaction.user.id).stars}** данной идее`, ephemeral: true })
+        if(idea.rating.find(rate => rate.user === interaction.user.id)) return interaction.reply({ content: `Вы уже поставили оценку **${idea.rating.find(rate => rate.user === interaction.user.id).stars}** данной идее`, ephemeral: true });
+        if(idea.author === interaction.user.id) return interaction.reply({ content: 'Вы не можете оценить свою же идею', ephemeral: true });
 
         interaction.reply({ content: `Вы установили оценку **${rating[interaction.values[0]]}** данной идее`, ephemeral: true });
 
@@ -47,7 +48,8 @@ class InteractionCreateListener extends ChillBotListener {
             $push: {
                 rating: {
                     user: interaction.user.id,
-                    stars: rating[interaction.values[0]]
+                    stars: rating[interaction.values[0]],
+                    date: Date.now()
                 }
             }
         });
