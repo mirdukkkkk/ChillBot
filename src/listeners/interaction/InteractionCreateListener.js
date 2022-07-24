@@ -47,7 +47,8 @@ class InteractionCreateListener extends ChillBotListener {
             $push: {
                 rating: {
                     user: interaction.user.id,
-                    stars: rating[interaction.values[0]]
+                    stars: rating[interaction.values[0]],
+                    date: Date.now()
                 }
             }
         });
