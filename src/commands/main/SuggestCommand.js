@@ -4,7 +4,7 @@ const ChillBotCommand = require('../../structures/ChillBotCommand');
 class SuggestCommand extends ChillBotCommand {
     constructor() {
         super('suggest', {
-            description: `Посылает ваши идеи в соответствующий канал`,
+            description: `Посылает ваши идеи в канал <#759839539798868013>`,
             category: 'main',
             usage: '<предложение>',
             cooldown: 3,
@@ -20,11 +20,21 @@ class SuggestCommand extends ChillBotCommand {
         if(data.ideaBlacklist?.includes(message.author.id)) return message.client.embconstructor.fail(`${message.client.constants.emojis.info} | Вы не можете использовать данную команду, так как находитесь в черном списке предложений. Если это произошло случайно, обратитесь к администрации.`, message);
 
         const id = (await message.client.database.collection('ideas').countDocuments()) + 1;
-        const embed = new EmbedBuilder().setTitle(`Предложение №${id}`).setColor(message.client.constants.colors.main).setDescription(args.join(' ')).addFields([ { name: `Дополнительные сведения`, value: `Автор: **${message.author.tag}** (${message.author.id})\nДата отправки: **${new Date().toLocaleString('ru')}**` }, { name: 'Ответа от администрации ещё не последовало', value: 'Здесь появится комментраий от отвечающего администратора' }, { name: 'Оценка участников', value: 'Пока что оценок недостаточно' } ]).setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) }).setTimestamp().toJSON();
         try {
+            const image = message.attachments.first()?.width ? message.attachments.first().url : null;
             const m = await message.guild.channels.cache.get(data.ideaChannel).send({
                 embeds: [
-                    embed
+                    new EmbedBuilder()
+                    .setTitle(`Предложение №${id}`)
+                    .setColor(message.client.constants.colors.main)
+                    .setDescription(args.join(' '))
+                    .addFields([ 
+                        { name: `Дополнительные сведения`, value: `Автор: **${message.author.tag}** (${message.author.id})\nДата отправки: **${new Date().toLocaleString('ru')}**` }, 
+                        { name: 'Ответа от администрации ещё не последовало', value: 'Здесь появится комментраий от отвечающего администратора' }, { name: 'Оценка участников', value: 'Пока что оценок недостаточно' } 
+                    ])
+                    .setImage(image ? image : null)
+                    .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
+                    .setTimestamp()
                 ],
                 components: [
                     new ActionRowBuilder()
@@ -62,6 +72,12 @@ class SuggestCommand extends ChillBotCommand {
                     )
                 ]
             });
+
+            m.startThread({
+                name: 'Комментарии',
+                reason: `Идея с ID ${id}`
+            });
+
             message.client.database.collection('ideas').updateOne({ id }, {
                 $set: {
                     rating: [],
