@@ -13,7 +13,7 @@ class MessageCreateListener extends ChillBotListener {
         //dm(message, client);
         const dbuser = await client.database.collection('users').findOne({ id: message.author.id });
         if(!dbuser && !message.author.bot) {
-            return DatabaseHelper.createUserEntry(client, {
+            return await DatabaseHelper.createUserEntry(client, {
                 user: message.member.id,
                 schema: user,
                 options: { upsert: true }
