@@ -21,6 +21,7 @@ class CommandsExecutorService {
         if(!this.message.guild) return;
         const data = await this.client.database.collection('main').findOne({ name: 'guild' });
         msgReact(this.message);
+        this.client.messagecounter.addMessage(this.message.author.id);
         if(!this.message.content.startsWith(data.prefix)) return;
         const [cmd, ...args] = this.message.content.slice(1).trim().split(/ +/g);
         const command = await this.findCommand(cmd);
