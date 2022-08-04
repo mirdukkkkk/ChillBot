@@ -30,7 +30,7 @@ class SuggestCommand extends ChillBotCommand {
                     .setDescription(args.join(' '))
                     .addFields([ 
                         { name: `Дополнительные сведения`, value: `Автор: **${message.author.tag}** (${message.author.id})\nДата отправки: **${new Date().toLocaleString('ru')}**` }, 
-                        { name: 'Ответа от администрации ещё не последовало', value: 'Здесь появится комментраий от отвечающего администратора' }, { name: 'Оценка участников', value: 'Пока что оценок недостаточно' } 
+                        { name: 'Ответа от администрации ещё не последовало', value: 'Здесь появится комментарий от отвечающего администратора' }, { name: 'Оценка участников', value: 'Пока что оценок недостаточно' } 
                     ])
                     .setImage(image ? image : null)
                     .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
