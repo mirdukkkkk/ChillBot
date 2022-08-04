@@ -3,6 +3,7 @@ const { MongoClient } = require('mongodb');
 const LoaderMaster = require('../services/LoaderService');
 const LoggingService = require('../services/LoggingService');
 const ChillBotEmbedConstructor = require('../utils/ChillBotEmbedConstructor');
+const MessageCounterService = require('../services/MessageCounterService');
 
 class ChillBotClient extends Client {
     constructor(options) {
@@ -12,6 +13,7 @@ class ChillBotClient extends Client {
         this.functions = require('../utils/ChillBotFunctions');
         this.embconstructor = new ChillBotEmbedConstructor(this);
         this.loggingservice = new LoggingService(this);
+        this.messagecounter = new MessageCounterService(this); 
         this.mongo = new MongoClient(this.settings.db, { useNewUrlParser: true, useUnifiedTopology: true });
         this.listeners = new Collection();
         this.commands = new Collection();
