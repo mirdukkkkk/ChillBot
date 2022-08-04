@@ -6,7 +6,7 @@ class ReadyListener extends ChillBotListener {
     }
 
     async run(client) {
-        client.messagecounter.hanlde(30000);
+        client.messagecounter.hanlde(300000);
         console.log('[+] ChillBot был запущен!');
     }
 }
