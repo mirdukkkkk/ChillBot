@@ -15,16 +15,22 @@ class UserCommand extends ChillBotCommand {
     async run(message, args) {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
         const data = await message.client.database.collection('users').findOne({ id: user.id });
-        return message.reply({
-            embeds: [
-                new EmbedBuilder()
-                .setTitle('👤 | Профиль пользователя')
-                .setColor(message.client.constants.colors.main)
-                .setDescription(`📎 | Тег пользователя: \`${user.user.tag}\`\n🖇️ | Никнейм на сервере: \`${user.nickname || 'Не установлен'}\`\n🆔 | ID пользователя: \`${user.id}\`\n🕐 | Был(-а) зарегистрирован(-а): \`${message.client.functions.getDays(new Date(user.user.createdTimestamp))} дней назад\`\n🗓️ | Дата регистрации: \`${new Date(user.user.createdAt).toISOString().replace('T', ' ').substring(0, 19)}\`\n🔌 | Присоединил(-лся/-ась) к серверу: \`${new Date(user.joinedTimestamp).toISOString().replace('T', ' ').substring(0, 19)}\`\n✉️ | Сообщений: \`${(isNaN(data.messages) ? 0 : data.messages) + (message.client.messagecounter.raw[user.id] ? message.client.messagecounter.raw[user.id] : 0)}\`\n🏅 | Значки: ${!data ? '`Отсуствуют`' : data.badges.map((b) => message.client.constants.badges[b]).join(' / ') || '`Отсуствуют`'}`)
-                .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
-                .setTimestamp()
-            ]
-        });
+        try {
+            message.reply({
+                embeds: [
+                    new EmbedBuilder()
+                    .setTitle('👤 | Профиль пользователя')
+                    .setColor(message.client.constants.colors.main)
+                    .setDescription(`📎 | Тег пользователя: \`${user.user.tag}\`\n🖇️ | Никнейм на сервере: \`${user.nickname || 'Не установлен'}\`\n🆔 | ID пользователя: \`${user.id}\`\n🕐 | Был(-а) зарегистрирован(-а): \`${message.client.functions.getDays(new Date(user.user.createdTimestamp))} дней назад\`\n🗓️ | Дата регистрации: \`${new Date(user.user.createdAt).toISOString().replace('T', ' ').substring(0, 19)}\`\n🔌 | Присоединил(-лся/-ась) к серверу: \`${new Date(user.joinedTimestamp).toISOString().replace('T', ' ').substring(0, 19)}\`\n✉️ | Сообщений: \`${(data?.messages ? data.messages : 0) + (message.client.messagecounter.raw[user.id] ? message.client.messagecounter.raw[user.id] : 0)}\`\n🏅 | Значки: ${!data ? '`Отсуствуют`' : data.badges.map((b) => message.client.constants.badges[b]).join(' / ') || '`Отсуствуют`'}`)
+                    .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true }) })
+                    .setTimestamp()
+                ]
+            });
+        } catch(err) {
+            message.client.loggingservice.error(err, message)
+        }
+        
+        return;
     }
 }
 
