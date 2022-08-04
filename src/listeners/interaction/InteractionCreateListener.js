@@ -38,6 +38,7 @@ class InteractionCreateListener extends ChillBotListener {
                     message.embeds[0].fields[1],
                     { name: message.embeds[0].fields[2].name, value: `${client.constants.emojis.rating[String(Math.round(averageStar))]} ${averageStar} (оценок: ${idea.rating.length + 1})` }
                 ])
+                .setImage(message.embeds[0].image)
                 .setFooter({ text: message.embeds[0].footer.text, iconURL: message.embeds[0].footer?.iconURL })
                 .setColor(message.embeds[0].color)
                 .setTimestamp()
