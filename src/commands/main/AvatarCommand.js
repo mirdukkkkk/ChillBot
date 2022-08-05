@@ -4,7 +4,7 @@ const ChillBotComamnd = require('../../structures/ChillBotCommand');
 class AvatarCommand extends ChillBotComamnd {
     constructor() {
         super('avatar', {
-            description: 'Отображает вашу аватарку или аватарку указанного пользователя',
+            description: 'Отображает вашу аватарку или аватарку указанного участника',
             category: 'main',
             usage: '[упоминание/ID]',
             aliases: ['ava'],
