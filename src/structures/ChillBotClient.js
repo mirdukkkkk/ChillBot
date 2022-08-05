@@ -15,6 +15,7 @@ class ChillBotClient extends Client {
         this.loggingservice = new LoggingService(this);
         this.messagecounter = new MessageCounterService(this); 
         this.mongo = new MongoClient(this.settings.db, { useNewUrlParser: true, useUnifiedTopology: true });
+        this.games = new Collection();
         this.listeners = new Collection();
         this.commands = new Collection();
     }
