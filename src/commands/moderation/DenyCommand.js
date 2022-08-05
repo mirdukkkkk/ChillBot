@@ -50,8 +50,11 @@ class DenyCommand extends ChillBotCommand {
             });
             message.react('848208108215468033');
 
-            msg.thread?.setLocked(true, 'Идея была рассмотрена').catch(() => {});
-            return message.reply({ embeds: [new EmbedBuilder().setTitle(`${message.client.constants.emojis.done} | Успешно`).setDescription(`${message.client.constants.emojis.info} | Вы отклонили предложение с ID: **${id}**\n🔨 | По причине: ${args.slice(1).join(' ').length ? args.slice(1).join(' ').slice(0, 999) : '-'}`).setColor(message.client.constants.colors.main).setFooter({ text: `Отказал администратор ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setTimestamp()] });
+            message.reply({ embeds: [new EmbedBuilder().setTitle(`${message.client.constants.emojis.done} | Успешно`).setDescription(`${message.client.constants.emojis.info} | Вы отклонили предложение с ID: **${id}**\n🔨 | По причине: ${args.slice(1).join(' ').length ? args.slice(1).join(' ').slice(0, 999) : '-'}`).setColor(message.client.constants.colors.main).setFooter({ text: `Отказал администратор ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setTimestamp()] });
+
+            msg.thread?.setLocked(true, `Идея с ID ${id} была расмотрена`).catch(() => {});
+            msg.thread?.setArchived(true, `Идея с ID ${id} была расмотрена`).catch(() => {});
+            return
         } catch(err) {
             return message.client.loggingservice.error(error, message);
         }
