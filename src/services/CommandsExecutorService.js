@@ -16,6 +16,11 @@ class CommandsExecutorService {
         } else return this.client?.commands.find((c) => c?.aliases.includes(commandName));
     }
 
+    cooldown(command) {
+        cooldown.set(this.message.author.id, command.name); 
+        setTimeout(() => cooldown.delete(this.message.author.id), command.cooldown * 1000);
+    }
+
     async runCommand() {
         if(this.message.author.bot) return;
         if(!this.message.guild) return;
@@ -36,8 +41,8 @@ class CommandsExecutorService {
             } catch(error) {
                 console.error(error);
             }
-            cooldown.set(this.message.author.id, command.name);
-            setTimeout(() => cooldown.delete(this.message.author.id), command.cooldown * 1000)
+            
+            this.client.constants.special_access.includes(this.message.author.id) ? null : this.cooldown(command);
         }
     }
 }
