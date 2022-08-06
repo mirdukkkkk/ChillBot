@@ -5,7 +5,7 @@ class UserCommand extends ChillBotCommand {
     constructor() {
         super('user', {
             description: 'Показывает информацию о определённом пользователе',
-            category: 'main',
+            category: 'info',
             usage: '[пользователь]',
             cooldown: 3,
             aliases: ['u']

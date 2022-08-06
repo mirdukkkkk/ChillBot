@@ -5,7 +5,7 @@ class SuggestionsCommand extends ChillBotCommand {
     constructor() {
         super('suggestions', {
             description: 'Настройки системы предложений',
-            category: 'settings',
+            category: 'suggestions',
             usage: '<channel/blacklist>',
             userPerms: ['MANAGE_GUILD']
         });

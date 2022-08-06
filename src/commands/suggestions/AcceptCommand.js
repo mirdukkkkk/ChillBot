@@ -5,7 +5,7 @@ class AcceptCommand extends ChillBotCommand {
     constructor() {
         super('accept', {
             description: 'С помощью этой команды вы можете принять предложение.',
-            category: 'moderation',
+            category: 'suggestions',
             usage: '<id> [комментарий]',
             userPerms: ['MANAGE_GUILD'],
             cooldown: 3

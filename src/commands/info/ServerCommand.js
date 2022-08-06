@@ -5,7 +5,7 @@ class ServerCommand extends ChillBotCommand {
     constructor() {
         super('server', {
             description: 'Показывает вам информацию о сервере',
-            category: 'main',
+            category: 'info',
             cooldown: 3,
             aliases: ['server-info', 's']
         });

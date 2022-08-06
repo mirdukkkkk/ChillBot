@@ -1,7 +1,5 @@
-const wait = require('util').promisify(setTimeout);
-const { emojis, colors } = require('../utils/ChillBotConstants');
+const { emojis } = require('../utils/ChillBotConstants');
 const Discord = require('discord.js');
-Discord.Colors.Green
 
 class ChillBotTttGame {
     constructor(options = {}) {
@@ -46,12 +44,14 @@ class ChillBotTttGame {
 
             if(data.reason === "time") {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel("Игра завершена").setEmoji("🕊"));
-                sent.edit({ components: [r], embeds: [{ color: '15548997', title: this.timeEndTitle.replace(/{user}/g, data.user), description: this.timeEndDescription.replace(/{user}/g, data.user) }] });
+                sent.reply({ components: [r], embeds: [{ color: '15548997', title: this.timeEndTitle.replace(/{user}/g, data.user), description: this.timeEndDescription.replace(/{user}/g, data.user) }] });
+                sent.edit({ components: [], embeds: [sent.embeds[0]] });
                 ended = true;
                 break;
             } else if (data.reason === "cancel") {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel("Игра завершена").setEmoji("🕊"));
-                sent.edit({ components: [r], embeds: [{ color: '15548997', title: this.forceEndTitle.replace(/{user}/g, data.user), description: this.forceEndDescription.replace(/{user}/g, data.user) }] });
+                sent.reply({ components: [r], embeds: [{ color: '15548997', title: this.forceEndTitle.replace(/{user}/g, data.user), description: this.forceEndDescription.replace(/{user}/g, data.user) }] });
+                sent.edit({ components: [], embeds: [sent.embeds[0]] });
                 ended = true;
                 break;
             }
@@ -68,12 +68,14 @@ class ChillBotTttGame {
 
             if (win === 0) {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel('Игра завершена').setEmoji("🕊"));
-                sent.edit({ components: [r], embeds: [{ color: 15105570, title: this.drawEndTitle.replace(/{player1}/g, message.author.username).replace(/{player2}/g, player2.username), description: this.drawEndDescription.replace(/{player1}/g, message.author.username).replace(/{player2}/g, player2.username) }] });
+                sent.reply({ components: [r], embeds: [{ color: 15105570, title: this.drawEndTitle.replace(/{player1}/g, message.author.username).replace(/{player2}/g, player2.username), description: this.drawEndDescription.replace(/{player1}/g, message.author.username).replace(/{player2}/g, player2.username) }] });
+                sent.edit({ components: [], embeds: [sent.embeds[0]] });
                 ended = true;
                 break;
             } else if (win >= 0 && win <= 2) {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel('Игра завершена').setEmoji("🕊"));
-                sent.edit({ components: [r], embeds: [{ color: 15105570, title: this.endTitle.replace(/{winner}/g, winner.username).replace(/{looser}/g, looser.username), description: this.endDescription.replace(/{winner}/g, winner).replace(/{looser}/g, looser) }] });
+                sent.reply({ components: [r], embeds: [{ color: 15105570, title: this.endTitle.replace(/{winner}/g, winner.username).replace(/{looser}/g, looser.username), description: this.endDescription.replace(/{winner}/g, winner).replace(/{looser}/g, looser) }] });
+                sent.edit({ components: [], embeds: [sent.embeds[0]] });
                 ended = true;
 
                 break;
@@ -82,21 +84,6 @@ class ChillBotTttGame {
 
         message.client.games.delete(message.author.id); message.client.games.delete(player2.id);
         if(ended) return;
-        /*
-        let win = this.getWinner(user, botc);
-        let winner = win === 1 ? message.author.username : player2.username;
-        let looser = win === 2 ? message.author.username : player2.username;
-        
-        if (win === 0) {
-            let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel("Игра завершена").setEmoji("🕊"));
-            sent.edit({ components: [r], embeds: [{ color: 15105570, title: this.drawEndTitle.replace(/{player1}/g, message.author.username).replace(/{player2}/g, player2.username), description: this.drawEndDescription.replace(/{player1}/g, message.author.username).replace(/{player2}/g, player2.username) }] });
-            ended = true;
-        } else if (win >= 0 && win <= 2) {
-            let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel("Игра завершена").setEmoji("🕊"));
-            sent.edit({ components: [r], embeds: [{ color: 15105570, title: this.endTitle.replace(/{winner}/g, winner).replace(/{looser}/g, looser), description: this.endDescription.replace(/{winner}/g, winner).replace(/{looser}/g, looser) }] });
-            ended = true;
-        }
-        */
     }
 
     async getComponents(options) {
@@ -130,7 +117,6 @@ class ChillBotTttGame {
                         msg.delete()
                     } else if (r === "1") {
                         msg.delete()
-                        //f.first().reply({ embeds: [{ color: 5763719, title: `${player.username} принял приглашение` }] });
                     }
     
                     res(move);
@@ -145,7 +131,7 @@ class ChillBotTttGame {
     getChoice(user, channel, options, player1, bot) {
         return new Promise(async (res, rej) => {
             try {
-                let _msg_ = await channel.send({ content: `${user.toString()}, выберайте куда вы хотите ходить` });
+                let _msg_ = await channel.send({ content: `${user.toString()}, выбирайте куда вы хотите ходить` });
                 setTimeout(() => _msg_.delete().catch(e => { }), this.autoDelete);
     
                 const collector = channel.createMessageComponentCollector({ filter: (i) => i.user.id === user.id && (i.customId.endsWith("_tic_tac_toe")), time: 30000 });
@@ -188,7 +174,7 @@ class ChillBotTttGame {
     }
 
     getDescription(player1, player2) {
-        let string = "```\n-----------------\n| 1️⃣ | 2️⃣ | 3️⃣ |\n| 4️⃣ | 5️⃣ | 6️⃣ |\n| 7️⃣ | 8️⃣ | 9️⃣ |\n-----------------\n```";
+        let string = "1️⃣2️⃣3️⃣\n4️⃣5️⃣6️⃣\n7️⃣8️⃣9️⃣";
         player1.forEach((v, i) => player1[i] = this.getEmoji(v) || this.getEmoji(player1[i]) === this.getEmoji(v));
         player2.forEach((v, i) => player2[i] = this.getEmoji(v) || this.getEmoji(player2[i]) === this.getEmoji(v));
     
