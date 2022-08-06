@@ -4,15 +4,16 @@ const ChillBotCommand = require('../../structures/ChillBotCommand');
 class HelpCommand extends ChillBotCommand {
     constructor() {
         super('help', {
-            description: 'Помощь по командам',
-            category: 'main',
+            description: 'Предоставляет помощь по командам',
+            category: 'info',
             usage: '[команда]',
+            aliases: ['h', 'хелп'],
             cooldown: 3
         });
     }
 
     async run(message, args) {
-        const categories = { main: 'Основное', fun: 'Развлечения', moderation: 'Модерация', settings: 'Настройки', utils: 'Утилиты' };
+        const categories = { info: 'Информация', fun: 'Развлечения', suggestions: 'Предложения', utils: 'Утилиты', settings: 'Настройки' };
         const data = await message.client.database.collection('main').findOne({ name: 'guild' });
 
         if(!args[0]) {

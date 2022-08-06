@@ -5,7 +5,7 @@ class SuggestCommand extends ChillBotCommand {
     constructor() {
         super('suggest', {
             description: `Посылает ваши идеи в канал <#759839539798868013>`,
-            category: 'main',
+            category: 'suggestions',
             usage: '<предложение>',
             cooldown: 3,
             aliases: ['sg']

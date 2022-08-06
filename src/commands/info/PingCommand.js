@@ -4,7 +4,7 @@ class PingCommand extends ChillBotCommand {
     constructor() {
         super('ping', {
             description: 'Показывает текуюю задержку ответа API discord',
-            category: 'main',
+            category: 'info',
             cooldown: 3
         });
     }
