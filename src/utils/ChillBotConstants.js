@@ -69,7 +69,7 @@ module.exports = {
         bumper: '🚀',
         creator: '🎨',
         creative: '💡',
-        champion: '🏆'
+        thanks: '🎁'
     },
     badgesArray: [
         "developer",

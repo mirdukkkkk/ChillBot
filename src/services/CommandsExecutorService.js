@@ -24,6 +24,7 @@ class CommandsExecutorService {
     async runCommand() {
         if(this.message.author.bot) return;
         if(!this.message.guild) return;
+        if(this.message.member.roles.cache.has('833065002880860210')) return;
         const data = await this.client.database.collection('main').findOne({ name: 'guild' });
         msgReact(this.message);
         this.client.messagecounter.addMessage(this.message.author.id);
