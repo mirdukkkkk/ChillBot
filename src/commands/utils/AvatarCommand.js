@@ -5,7 +5,7 @@ class AvatarCommand extends ChillBotComamnd {
     constructor() {
         super('avatar', {
             description: 'Отображает вашу аватарку или аватарку указанного участника',
-            category: 'main',
+            category: 'utils',
             usage: '[упоминание/ID]',
             aliases: ['ava'],
             cooldown: 3

@@ -5,7 +5,7 @@ class DenyCommand extends ChillBotCommand {
     constructor() {
         super('deny', {
             description: 'С помощью этой команды вы можете отклонить предложение.',
-            category: 'moderation',
+            category: 'suggestions',
             usage: '<id> [комментарий]',
             userPerms: ['MANAGE_GUILD'],
             cooldown: 3
