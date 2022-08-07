@@ -44,14 +44,18 @@ class ChillBotTttGame {
 
             if(data.reason === "time") {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel("Игра завершена").setEmoji("🕊"));
-                sent.reply({ components: [r], embeds: [{ color: '15548997', title: this.timeEndTitle.replace(/{user}/g, data.user), description: this.timeEndDescription.replace(/{user}/g, data.user) }] });
+                sent.reply({ components: [r], embeds: [{ color: '15548997', title: this.timeEndTitle.replace(/{user}/g, data.user.username), description: this.timeEndDescription.replace(/{user}/g, data.user.username) }] });
                 sent.edit({ components: [], embeds: [sent.embeds[0]] });
+                message.client.database.collection('users').updateOne({ id: data.user.id }, { $inc: { "xo.lose": 1 } });
+                message.client.database.collection('users').updateOne({ id: message.client.games.get(data.user.id).id }, { $inc: { "xo.win": 1 } });
                 ended = true;
                 break;
             } else if (data.reason === "cancel") {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel("Игра завершена").setEmoji("🕊"));
-                sent.reply({ components: [r], embeds: [{ color: '15548997', title: this.forceEndTitle.replace(/{user}/g, data.user), description: this.forceEndDescription.replace(/{user}/g, data.user) }] });
+                sent.reply({ components: [r], embeds: [{ color: '15548997', title: this.forceEndTitle.replace(/{user}/g, data.user.username), description: this.forceEndDescription.replace(/{user}/g, data.user.username) }] });
                 sent.edit({ components: [], embeds: [sent.embeds[0]] });
+                message.client.database.collection('users').updateOne({ id: data.user.id }, { $inc: { "xo.lose": 1 } });
+                message.client.database.collection('users').updateOne({ id: message.client.games.get(data.user.id).id }, { $inc: { "xo.win": 1 } });
                 ended = true;
                 break;
             }
@@ -77,7 +81,8 @@ class ChillBotTttGame {
                 sent.reply({ components: [r], embeds: [{ color: 15105570, title: this.endTitle.replace(/{winner}/g, winner.username).replace(/{looser}/g, looser.username), description: this.endDescription.replace(/{winner}/g, winner).replace(/{looser}/g, looser) }] });
                 sent.edit({ components: [], embeds: [sent.embeds[0]] });
                 ended = true;
-
+                message.client.database.collection('users').updateOne({ id: winner.id }, { $inc: { "xo.win": 1 } });
+                message.client.database.collection('users').updateOne({ id: looser.id }, { $inc: { "xo.lose": 1 } });
                 break;
             }
         }
@@ -162,8 +167,8 @@ class ChillBotTttGame {
                 });
     
                 collector.once('end', async (f, r) => {
-                    if (r === "time") res({ reason: "time", user: user.username });
-                    else if (r === "cancel") res({ reason: "cancel", user: user.username });
+                    if (r === "time") res({ reason: "time", user });
+                    else if (r === "cancel") res({ reason: "cancel", user });
                     else res({ choice: this.getEmoji(r), options: options, player1: player1, bot: bot });
                 });
             } catch (e) {

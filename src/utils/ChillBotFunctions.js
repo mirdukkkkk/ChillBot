@@ -15,5 +15,12 @@ module.exports = {
         let now = new Date();
         let diff = now.getTime() - date.getTime();
         return Math.floor(diff / 86400000);
+    },
+
+    formatWinLose(win, lose) {
+        if(isNaN(win/lose)) return 'невозможно расчитать';
+        if(!(isFinite(win/lose))) return 'невозможно расчитать';
+
+        return (win/lose).toFixed(2);
     }
 }
