@@ -2,7 +2,12 @@ module.exports = {
     user: {
         badges: [],
         reactions: true,
-        punishments: []
+        punishments: [],
+        messages: 0,
+        xo: {
+            win: 0,
+            lose: 0
+        }
     },
     staffMember: {
         punishments: [],
