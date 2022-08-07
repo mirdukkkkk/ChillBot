@@ -46,7 +46,7 @@ class UserCommand extends ChillBotCommand {
                                 value:
                                     `📈 | Побед: \`${win}\`\n` +
                                     `📉 | Поражений: \`${lose}\`\n` +
-                                    `💿 | Было сыграно игр: \`${win + lose}\`\n` +
+                                    `💿 | Было сыграно игр: \`${data.xo?.all || 0}\`\n` +
                                     `📶 | W/L: \`${message.client.functions.formatWinLose(win, lose)}\``
                             }
                         ]
