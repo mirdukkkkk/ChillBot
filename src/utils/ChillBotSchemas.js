@@ -6,7 +6,8 @@ module.exports = {
         messages: 0,
         xo: {
             win: 0,
-            lose: 0
+            lose: 0,
+            all: 0
         }
     },
     staffMember: {
