@@ -46,16 +46,16 @@ class ChillBotTttGame {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel("Игра завершена").setEmoji("🕊"));
                 sent.reply({ components: [r], embeds: [{ color: '15548997', title: this.timeEndTitle.replace(/{user}/g, data.user.username), description: this.timeEndDescription.replace(/{user}/g, data.user.username) }] });
                 sent.edit({ components: [], embeds: [sent.embeds[0]] });
-                message.client.database.collection('users').updateOne({ id: data.user.id }, { $inc: { "xo.lose": 1 } });
-                message.client.database.collection('users').updateOne({ id: message.client.games.get(data.user.id).id }, { $inc: { "xo.win": 1 } });
+                message.client.database.collection('users').updateOne({ id: data.user.id }, { $inc: { "xo.lose": 1, "xo.all": 1 } });
+                message.client.database.collection('users').updateOne({ id: message.client.games.get(data.user.id).id }, { $inc: { "xo.win": 1, "xo.all": 1 } });
                 ended = true;
                 break;
             } else if (data.reason === "cancel") {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel("Игра завершена").setEmoji("🕊"));
                 sent.reply({ components: [r], embeds: [{ color: '15548997', title: this.forceEndTitle.replace(/{user}/g, data.user.username), description: this.forceEndDescription.replace(/{user}/g, data.user.username) }] });
                 sent.edit({ components: [], embeds: [sent.embeds[0]] });
-                message.client.database.collection('users').updateOne({ id: data.user.id }, { $inc: { "xo.lose": 1 } });
-                message.client.database.collection('users').updateOne({ id: message.client.games.get(data.user.id).id }, { $inc: { "xo.win": 1 } });
+                message.client.database.collection('users').updateOne({ id: data.user.id }, { $inc: { "xo.lose": 1, "xo.all": 1 } });
+                message.client.database.collection('users').updateOne({ id: message.client.games.get(data.user.id).id }, { $inc: { "xo.win": 1, "xo.all": 1 } });
                 ended = true;
                 break;
             }
@@ -73,14 +73,16 @@ class ChillBotTttGame {
             if (win === 0) {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel('Игра завершена').setEmoji("🕊"));
                 sent.reply({ components: [r], embeds: [{ color: 15105570, title: this.drawEndTitle.replace(/{player1}/g, message.author.username).replace(/{player2}/g, player2.username), description: this.drawEndDescription.replace(/{player1}/g, message.author.username).replace(/{player2}/g, player2.username) }] });
+                message.client.database.collection('users').updateOne({ id: message.author.id }, { $inc: { "xo.all": 1 } });
+                message.client.database.collection('users').updateOne({ id: player2.id }, { $inc: { "xo.all": 1 } });
                 ended = true;
                 break;
             } else if (win >= 0 && win <= 2) {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel('Игра завершена').setEmoji("🕊"));
                 sent.reply({ components: [r], embeds: [{ color: 15105570, title: this.endTitle.replace(/{winner}/g, winner.username).replace(/{looser}/g, looser.username), description: this.endDescription.replace(/{winner}/g, winner).replace(/{looser}/g, looser) }] });
                 ended = true;
-                message.client.database.collection('users').updateOne({ id: winner.id }, { $inc: { "xo.win": 1 } });
-                message.client.database.collection('users').updateOne({ id: looser.id }, { $inc: { "xo.lose": 1 } });
+                message.client.database.collection('users').updateOne({ id: winner.id }, { $inc: { "xo.win": 1, "xo.all": 1 } });
+                message.client.database.collection('users').updateOne({ id: looser.id }, { $inc: { "xo.lose": 1, "xo.all": 1 } });
                 break;
             }
         }
