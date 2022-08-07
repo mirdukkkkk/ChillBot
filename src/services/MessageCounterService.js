@@ -14,7 +14,7 @@ class MessageCounterService {
         return setInterval(async() => {
             const users = await this.client.database.collection('users').find().toArray();
             Object.keys(this.raw).forEach(user => {
-                this.client.database.collection('users').updateOne({ id: user }, { $set: { messages: this.raw[user] + (users.find(u => u.id === user).messages ? users.find(u => u.id === user).messages : 0 ) } });
+                this.client.database.collection('users').updateOne({ id: user }, { $inc: { messages: this.raw[user] } });
             });
             this.raw = {};
         }, checkInterval)

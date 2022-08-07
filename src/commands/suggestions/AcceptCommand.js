@@ -56,7 +56,7 @@ class AcceptCommand extends ChillBotCommand {
 
             msg.thread?.setLocked(true, `Идея с ID ${id} была расмотрена`).catch(() => {});
             msg.thread?.setArchived(true, `Идея с ID ${id} была расмотрена`).catch(() => {});
-            return
+            return;
         } catch(err) {
             return message.client.loggingservice.error(error, message);
         }
