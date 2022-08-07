@@ -73,13 +73,11 @@ class ChillBotTttGame {
             if (win === 0) {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel('Игра завершена').setEmoji("🕊"));
                 sent.reply({ components: [r], embeds: [{ color: 15105570, title: this.drawEndTitle.replace(/{player1}/g, message.author.username).replace(/{player2}/g, player2.username), description: this.drawEndDescription.replace(/{player1}/g, message.author.username).replace(/{player2}/g, player2.username) }] });
-                sent.edit({ components: [], embeds: [sent.embeds[0]] });
                 ended = true;
                 break;
             } else if (win >= 0 && win <= 2) {
                 let r = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("no_need_of_id_here").setDisabled(true).setStyle(Discord.ButtonStyle.Secondary).setLabel('Игра завершена').setEmoji("🕊"));
                 sent.reply({ components: [r], embeds: [{ color: 15105570, title: this.endTitle.replace(/{winner}/g, winner.username).replace(/{looser}/g, looser.username), description: this.endDescription.replace(/{winner}/g, winner).replace(/{looser}/g, looser) }] });
-                sent.edit({ components: [], embeds: [sent.embeds[0]] });
                 ended = true;
                 message.client.database.collection('users').updateOne({ id: winner.id }, { $inc: { "xo.win": 1 } });
                 message.client.database.collection('users').updateOne({ id: looser.id }, { $inc: { "xo.lose": 1 } });
@@ -193,8 +191,8 @@ class ChillBotTttGame {
         player1.forEach((v, i) => player1[i] = this.getNumber(v))
         player2.forEach((v, i) => player2[i] = this.getNumber(v))
     
-        if ((player1.includes(7) && player1.includes(5) && player1.includes(3)) || (player1.includes(1) && player1.includes(5) && player1.includes(9)) || (player1.includes(1) && player1.includes(2) && player1.includes(3)) || (player1.includes(4) && player1.includes(5) && player1.includes(6)) || (player1.includes(7) && player1.includes(8) && player1.includes(9)) || (player1.includes(1) && player1.includes(4) && player1.includes(7)) || (player1.includes(5) && player1.includes(2) && player1.includes(8)) || (player1.includes(9) && player1.includes(2) && player1.includes(6)) || (player1.includes(7) && player1.includes(5) && player1.includes(3))) return 1;
-        else if ((player2.includes(1) && player2.includes(5) && player2.includes(9)) || (player2.includes(7) && player2.includes(5) && player2.includes(3)) || (player2.includes(1) && player2.includes(2) && player2.includes(3)) || (player2.includes(4) && player2.includes(5) && player2.includes(6)) || (player2.includes(7) && player2.includes(8) && player2.includes(9)) || (player2.includes(1) && player2.includes(4) && player2.includes(7)) || (player2.includes(5) && player2.includes(2) && player2.includes(8)) || (player2.includes(9) && player2.includes(2) && player2.includes(6)) || (player2.includes(7) && player2.includes(5) && player2.includes(3))) return 2;
+        if ((player1.includes(7) && player1.includes(5) && player1.includes(3)) || (player1.includes(1) && player1.includes(5) && player1.includes(9)) || (player1.includes(1) && player1.includes(2) && player1.includes(3)) || (player1.includes(4) && player1.includes(5) && player1.includes(6)) || (player1.includes(7) && player1.includes(8) && player1.includes(9)) || (player1.includes(1) && player1.includes(4) && player1.includes(7)) || (player1.includes(5) && player1.includes(2) && player1.includes(8)) || (player1.includes(9) && player1.includes(3) && player1.includes(6)) || (player1.includes(7) && player1.includes(5) && player1.includes(3))) return 1;
+        else if ((player2.includes(1) && player2.includes(5) && player2.includes(9)) || (player2.includes(7) && player2.includes(5) && player2.includes(3)) || (player2.includes(1) && player2.includes(2) && player2.includes(3)) || (player2.includes(4) && player2.includes(5) && player2.includes(6)) || (player2.includes(7) && player2.includes(8) && player2.includes(9)) || (player2.includes(1) && player2.includes(4) && player2.includes(7)) || (player2.includes(5) && player2.includes(2) && player2.includes(8)) || (player2.includes(9) && player2.includes(3) && player2.includes(6)) || (player2.includes(7) && player2.includes(5) && player2.includes(3))) return 2;
         else if (player1.length + player2.length === 9) return 0;
         else return -1;
     }
