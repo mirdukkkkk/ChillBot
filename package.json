@@ -1,6 +1,6 @@
 {
   "name": "chillbot",
-  "version": "2.0.0",
+  "version": "2.7.4a",
   "description": "any",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "crypto": "^1.0.1",
     "discord.js": "^14.0.3",
     "mongodb": "^4.1.0",
+    "pagination.djs": "^4.0.1",
     "path": "^0.12.7"
   }
 }
