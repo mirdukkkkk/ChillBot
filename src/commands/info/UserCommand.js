@@ -16,6 +16,8 @@ class UserCommand extends ChillBotCommand {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
         const data = await message.client.database.collection('users').findOne({ id: user.id });
         try {
+            const win = data.xo?.win || 0;
+            const lose = data.xo?.lose || 0;
             message.reply({
                 embeds: [
                     new EmbedBuilder()
@@ -38,6 +40,14 @@ class UserCommand extends ChillBotCommand {
                                     `🔌 | Присоединил(-лся/-ась) к серверу: \`${new Date(user.joinedTimestamp).toISOString().replace('T', ' ').substring(0, 19)}\`\n` +
                                     `✉️ | Сообщений: \`${(data?.messages ? data.messages : 0) + (message.client.messagecounter.raw[user.id] ? message.client.messagecounter.raw[user.id] : 0)}\`\n` +
                                     `🏅 | Значки: ${!data ? '`Отсуствуют`' : data.badges.map((b) => message.client.constants.badges[b]).join(' / ') || '`Отсуствуют`'}`
+                            },
+                            {
+                                name: 'Крестики-нолики',
+                                value:
+                                    `📈 | Побед: \`${win}\`\n` +
+                                    `📉 | Поражений: \`${lose}\`\n` +
+                                    `💿 | Было сыграно игр: \`${win + lose}\`\n` +
+                                    `📶 | W/L: \`${message.client.functions.formatWinLose(win, lose)}\``
                             }
                         ]
                     )
@@ -47,6 +57,7 @@ class UserCommand extends ChillBotCommand {
                 ]
             });
         } catch(err) {
+            console.error(err);
             message.client.loggingservice.error(err, message)
         }
 
