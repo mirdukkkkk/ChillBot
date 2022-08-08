@@ -42,7 +42,7 @@ class DocsCommand extends ChillBotCommand {
             }
 
             default: {
-                message.client.embconstructor.fail(`${message.client.constants.emojis.info} | Доступен пока один параметр: \`badges/b\``, message);
+                message.client.embconstructor.fail(`${message.client.constants.emojis.info} | Доступен пока один параметр: \`badges(b)\``, message);
                 break;
             }
         }
