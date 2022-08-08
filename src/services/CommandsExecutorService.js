@@ -27,7 +27,7 @@ class CommandsExecutorService {
         if(this.message.member.roles.cache.has('833065002880860210')) return;
         const data = await this.client.database.collection('main').findOne({ name: 'guild' });
         msgReact(this.message);
-        this.client.messagecounter.addMessage(this.message.author.id);
+        if(!(this.message.channel.id === '738534600174862389')) this.client.messagecounter.addMessage(this.message.author.id);
         if(!this.message.content.startsWith(data.prefix)) return;
         const [cmd, ...args] = this.message.content.slice(1).trim().split(/ +/g);
         const command = await this.findCommand(cmd);
