@@ -37,8 +37,9 @@ class UserCommand extends ChillBotCommand {
                                 name: 'Серверная информация',
                                 value: 
                                     `🖇️ | Никнейм на сервере: \`${user.nickname || 'Не установлен'}\`\n` +
-                                    `🔌 | Присоединил(-лся/-ась) к серверу: \`${new Date(user.joinedTimestamp).toISOString().replace('T', ' ').substring(0, 19)}\`\n` +
+                                    `🔌 | Присоединил(лся/ась) к серверу: \`${new Date(user.joinedTimestamp).toISOString().replace('T', ' ').substring(0, 19)}\`\n` +
                                     `✉️ | Сообщений: \`${(data?.messages ? data.messages : 0) + (message.client.messagecounter.raw[user.id] ? message.client.messagecounter.raw[user.id] : 0)}\`\n` +
+                                    `❤️ | В браке с: ${data.married ? (message.guild.members.cache.get(data.married) || `\`${data.married}\``) : '`-`'}\n` +
                                     `🏅 | Значки: ${!data ? '`Отсуствуют`' : data.badges.map((b) => message.client.constants.badges[b]).join(' / ') || '`Отсуствуют`'}`
                             },
                             {

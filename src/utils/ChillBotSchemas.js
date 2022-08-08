@@ -8,7 +8,8 @@ module.exports = {
             win: 0,
             lose: 0,
             all: 0
-        }
+        },
+        married: null
     },
     staffMember: {
         punishments: [],
