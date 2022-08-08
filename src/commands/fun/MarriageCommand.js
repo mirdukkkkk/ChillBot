@@ -34,12 +34,14 @@ class MarriageCommand extends ChillBotCommand {
 
                 message.client.database.collection('users').updateOne({ id: message.author.id }, { $set: { married: null } });
                 message.client.database.collection('users').updateOne({ id: data.married }, { $set: { married: null } });
+                break;
             }
 
             default: {
                 const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
                 const data = await message.client.database.collection('users').findOne({ id: user.id });
 
+                if(!user) return message.client.embconstructor.fail(`${message.client.constants.emojis.info} | Укажите того/ту, с кем вы хотите пожениться`, message);
                 if(user.id === message.author.id) return message.client.embconstructor.fail(`${message.client.constants.emojis.info} | Вы не можете жениться на себе :(`, message);
                 if(user.bot) return message.client.embconstructor.fail(`${message.client.constants.emojis.info} | Вы не можете жениться на боте`, message);
                 if(data.married) return message.client.embconstructor.fail(`${message.client.constants.emojis.info} | Вы уже женаты с ${(message.guild.members.cache.get(data.married)?.nickname || message.client.users.cache.get(data.married)?.username) || data.married}`, message);
