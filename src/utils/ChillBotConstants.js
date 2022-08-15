@@ -78,7 +78,8 @@ module.exports = {
         "moderation",
         "bumper",
         "creator",
-        "creative"
+        "creative",
+        "thanks"
     ],
     permissions: {
         ADMINISTRATOR: 'Администратор',
