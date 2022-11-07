@@ -2,8 +2,8 @@ const { WebhookClient, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     webhooks: {
-        dm: new WebhookClient({ token: 'A3t8Tm9xHzAXaSzh1FGoLfaj7WUJIzbLVvW8TvXdgNlmJ2XXacnmzKJut5SLDsbV6vvU', id: '848247855281340426' }),
-        logging: new WebhookClient({ token: 'V-k72cNyLHQdjCoFHD_FmjB6E2VvQBQtz3fwUHm53pZSgUGfMFFQw0pj3OKRuQisWMTW', id: '864136937351020586' })
+        dm: new WebhookClient({ token: '-', id: '-' }),
+        logging: new WebhookClient({ token: '-', id: '-' })
     },
     special_access: [
         "663378999103324180",
@@ -78,7 +78,8 @@ module.exports = {
         "moderation",
         "bumper",
         "creator",
-        "creative"
+        "creative",
+        "thanks"
     ],
     permissions: {
         ADMINISTRATOR: 'Администратор',
