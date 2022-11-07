@@ -1,2 +1,2 @@
-# ChilllBot - приватный бот для сервера Just Chilling
-**ChillBot** - это приватный бот бот для сервера **Just Chilling**, с большим набором функций. Созданный на языке **JavaScript**, сделанный на библеотеке **Discord.js**.
+# ChilllBot - this is a private bot for the **Just Chilling** server
+**ChillBot** - created on **Discord.js** library.
